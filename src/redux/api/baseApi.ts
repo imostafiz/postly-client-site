@@ -4,8 +4,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://gardening-platform-backend-pi.vercel.app/api`,
+    baseUrl: process.env.NEXT_PUBLIC_BASE_API || "http://localhost:5000/api",
   }), // Use `baseQuery` here
-  tagTypes: ["post", "user", "like", "disLike", "comment","payment"],
+  tagTypes: ["post", "user", "like", "disLike", "comment", "payment"],
   endpoints: () => ({}),
 });

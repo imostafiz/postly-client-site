@@ -3,24 +3,26 @@ import axios from "axios";
 import { envConfig } from "@/src/config/envConfig";
 import { IPost } from "@/src/types";
 
+const BASE_URL = envConfig.baseApi || "http://localhost:5000/api";
+
 //create a post
 // eslint-disable-next-line prettier/prettier
 export const createPost = async (data:any) => {
-  const res = await axios.post(`${envConfig.baseApi}/post`, data);
+  const res = await axios.post(`${BASE_URL}/post`, data);
 
   return res.data;
 };
 
 //get all post
 export const getPosts = async () => {
-  const res = await fetch(`${envConfig.baseApi}/post`, { cache: "no-store" });
+  const res = await fetch(`${BASE_URL}/post`, { cache: "no-store" });
 
   return res.json();
 };
 
 //edit my psot
 export const updatePost = async (id: string, updateData: Partial<IPost>) => {
-  const res = await axios.patch(`${envConfig.baseApi}/post/${id}`, updateData, {
+  const res = await axios.patch(`${BASE_URL}/post/${id}`, updateData, {
     headers: {
       "Cache-Control": "no-store",
     },
@@ -31,7 +33,7 @@ export const updatePost = async (id: string, updateData: Partial<IPost>) => {
 
 //deletePost
 export const deletePost = async (id: string) => {
-  const res = await axios.delete(`${envConfig.baseApi}/post/${id}`, {
+  const res = await axios.delete(`${BASE_URL}/post/${id}`, {
     headers: {
       "Cache-Control": "no-store",
     },
@@ -42,7 +44,7 @@ export const deletePost = async (id: string) => {
 
 export const addLike = async (userId: string, postId: string) => {
   const res = await axios.post(
-    `${envConfig.baseApi}/likes`,
+    `${BASE_URL}/likes`,
     {
       userId,
       postId,
@@ -59,7 +61,7 @@ export const addLike = async (userId: string, postId: string) => {
 
 export const disLike = async (userId: string, postId: string) => {
   const res = await axios.post(
-    `${envConfig.baseApi}/dislikes`,
+    `${BASE_URL}/dislikes`,
     {
       userId,
       postId,

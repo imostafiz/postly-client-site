@@ -79,7 +79,7 @@ const postApi = baseApi.injectEndpoints({
     getMyFavoritePost: builder.query({
       query: (userId) => {
         return {
-          url: `post/favorite/${userId}`,
+          url: `/post/favorite/${userId}`,
           method: "GET",
         };
       },
