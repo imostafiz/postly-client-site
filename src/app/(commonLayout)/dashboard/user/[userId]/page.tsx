@@ -18,7 +18,7 @@ const SingleUserPost: React.FC<SingleUserPostProps> = ({ params }) => {
   return (
     <div>
       {posts?.map((post: IPost) => (
-        <PostCard key={post._id} post={post} /> // Render each post using PostCard component
+        <PostCard key={post.id} post={post} /> // Render each post using PostCard component
       ))}
     </div>
   );

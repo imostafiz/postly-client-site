@@ -12,7 +12,7 @@ import { IUser } from "@/src/types";
 
 const Friend = () => {
   const { data: newData, refetch: refetchUserData } = useGetUser();
-  const userId = newData?.data?._id;
+  const userId = newData?.data?.id;
   const { data } = useGetAllUserQuery({});
   const [followUser] = useFollowUserMutation();
   const users = data?.data;
@@ -41,7 +41,7 @@ const Friend = () => {
         {users?.map((user: IUser) => {
           return (
             <div
-              key={user._id}
+              key={user.id}
               className="border border-gray-900 rounded-xl p-2 my-3"
             >
               <div className="flex justify-between">
@@ -64,16 +64,16 @@ const Friend = () => {
                   </div>
                 </div>
                 <div>
-                  {user?._id !== userId && (
+                  {user?.id !== userId && (
                     <div
                       className="text-blue-500 ms-2 cursor-pointer"
                       role="button"
                       tabIndex={0}
-                      onClick={() => handleFollowUser(user._id)}
-                      onKeyDown={(event) => handleKeyDown(event, user._id)}
+                      onClick={() => handleFollowUser(user.id)}
+                      onKeyDown={(event) => handleKeyDown(event, user.id)}
                     >
                       {newData?.data?.following?.some(
-                        (follower: any) => follower === user._id,
+                        (follower: any) => follower === user.id,
                       )
                         ? "Following"
                         : "Follow"}

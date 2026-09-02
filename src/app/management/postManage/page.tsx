@@ -16,7 +16,7 @@ const PostManagement = () => {
       <Divider />
       <div>
         {posts?.map((singlePost: IPost) => (
-          <MyPostCard key={singlePost._id} singlePost={singlePost} />
+          <MyPostCard key={singlePost.id} singlePost={singlePost} />
         ))}
       </div>
     </div>

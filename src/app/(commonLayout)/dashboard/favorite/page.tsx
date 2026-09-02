@@ -5,7 +5,7 @@ import { useGetMyFavoritePostQuery } from "@/src/redux/features/post";
 
 const FavoritePostPage = () => {
   const { data } = useGetUser();
-  const userId = data?.data?._id;
+  const userId = data?.data?.id;
 
   const { data: postData } = useGetMyFavoritePostQuery(userId);
   const posts = postData?.data;
@@ -16,7 +16,7 @@ const FavoritePostPage = () => {
         // eslint-disable-next-line prettier/prettier
         posts.map((post: any) => (
           <div
-            key={post._id}
+            key={post.id}
             className='max-w-md mx-auto my-4 border  bg-black rounded-lg shadow-md overflow-hidden'
           >
             {/* Post Image */}

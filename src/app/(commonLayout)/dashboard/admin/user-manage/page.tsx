@@ -16,10 +16,10 @@ import { useGetAllUserQuery } from "@/src/redux/features/user";
 
 // Define User type
 interface IUser {
-  _id: string;
+  id: string;
   name: string;
   email: string;
-  role: "user" | "admin"; // If there are other roles, add them here
+  role: "user" | "admin";
   profileImage: string;
 }
 
@@ -120,7 +120,7 @@ const UserManagement: React.FC = () => {
         </TableHeader>
         <TableBody items={allUsers}>
           {(user: IUser) => (
-            <TableRow key={user._id}>
+            <TableRow key={user.id}>
               {(columnKey) => (
                 <TableCell>
                   {renderCell(user, columnKey as keyof IUser | "actions")}

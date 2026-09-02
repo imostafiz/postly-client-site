@@ -13,7 +13,6 @@ interface registerData {
   profileImage?: string;
   phone?: string;
   address?: string;
-  role: string;
 }
 
 interface userDate {
@@ -34,7 +33,8 @@ export const registerUser = async (userData: registerData) => {
 
     return data;
   } catch (error: any) {
-    throw new Error(error);
+    const message = error?.response?.data?.message || error?.message || 'Registration failed';
+    throw new Error(message);
   }
 };
 
@@ -51,7 +51,8 @@ export const loginUser = async (userData: userDate) => {
 
     return data;
   } catch (error: any) {
-    throw new Error(error);
+    const message = error?.response?.data?.message || error?.message || 'Login failed';
+    throw new Error(message);
   }
 };
 
@@ -63,12 +64,12 @@ export const getCurrentUser = async () => {
     decodedToken = await jwtDecode(accessToken);
 
     return {
-      _id: decodedToken?._id,
+      id: decodedToken?.id,
       name: decodedToken?.name,
       role: decodedToken?.role,
       email: decodedToken?.email,
       address: decodedToken?.address,
-      isPremium: decodedToken.isPremium,
+      isPremium: decodedToken?.isPremium,
       verified: decodedToken?.verified,
       phone: decodedToken?.phone,
       followers: decodedToken?.followers,

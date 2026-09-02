@@ -14,7 +14,7 @@ const UserPost = ({ posts, isLoading }:any) => {
     <div>
       {posts?.length > 0 ? (
         // eslint-disable-next-line prettier/prettier
-        posts.map((post:IPost) => <PostCard key={post._id} post={post} />)
+        posts.map((post:IPost) => <PostCard key={post.id} post={post} />)
       ) : (
         <p>No posts found.</p>
       )}

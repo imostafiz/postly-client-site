@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "@nextui-org/image";
+// import { Image } from "@nextui-org/image";
 import {
   Card,
   CardHeader,
@@ -39,7 +39,7 @@ const PostCard = ({ post }: any) => {
   const { user } = useUser();
   const { data: newData, refetch: refetchUserData } = useGetUser();
   console.log("new new data", newData);
-  const userId = newData?.data?._id;
+  const userId = newData?.data?.id;
   const [createLike] = useCreateLikeMutation();
   const [createDislike] = useCreateDislikeMutation();
   const [followUser] = useFollowUserMutation();
@@ -73,11 +73,11 @@ const PostCard = ({ post }: any) => {
   // Effect to set the initial status based on post data
   useEffect(() => {
     // eslint-disable-next-line prettier/prettier
-    if (post?.likes?.some((like: any) => like?.user?._id === userId)) {
+    if (post?.likes?.some((like: any) => like?.user?.id === userId)) {
       setIsLiked(true);
     }
     // eslint-disable-next-line prettier/prettier
-    if (post?.dislikes?.some((dislike: any) => dislike?.user?._id === userId)) {
+    if (post?.dislikes?.some((dislike: any) => dislike?.user?.id === userId)) {
       setIsDisliked(true);
     }
   }, [post, userId]);
@@ -115,7 +115,7 @@ const PostCard = ({ post }: any) => {
       if (isLiked) {
         setIsLiked(false);
         // eslint-disable-next-line prettier/prettier
-        setLikes(likes.filter((like: any) => like?.user?._id !== userId));
+        setLikes(likes.filter((like: any) => like?.user?.id !== userId));
         toast.success("You unliked it");
       } else {
         // Like the post
@@ -123,13 +123,13 @@ const PostCard = ({ post }: any) => {
 
         setIsLiked(true);
         setIsDisliked(false); // Remove dislike if it was set
-        setLikes([...likes, { user: { _id: userId } }]);
+        setLikes([...likes, { user: { id: userId } }]);
 
         // If it was previously disliked, remove that dislike
         if (isDisliked) {
           setDislikes(
             // eslint-disable-next-line prettier/prettier
-            dislikes.filter((dislike: any) => dislike?.user?._id !== userId)
+            dislikes.filter((dislike: any) => dislike?.user?.id !== userId)
           );
         }
 
@@ -150,7 +150,7 @@ const PostCard = ({ post }: any) => {
         setIsDisliked(false);
         setDislikes(
           // eslint-disable-next-line prettier/prettier
-          dislikes.filter((dislike: any) => dislike?.user?._id !== userId)
+          dislikes.filter((dislike: any) => dislike?.user?.id !== userId)
         );
         toast.success("You unDisliked it");
       } else {
@@ -159,12 +159,12 @@ const PostCard = ({ post }: any) => {
 
         setIsDisliked(true);
         setIsLiked(false); // Remove like if it was set
-        setDislikes([...dislikes, { user: { _id: userId } }]);
+        setDislikes([...dislikes, { user: { id: userId } }]);
 
         // If it was previously liked, remove that like
         if (isLiked) {
           // eslint-disable-next-line prettier/prettier
-          setLikes(likes.filter((like: any) => like?.user?._id !== userId));
+          setLikes(likes.filter((like: any) => like?.user?.id !== userId));
         }
 
         toast.success("You disliked it");
@@ -212,7 +212,7 @@ const PostCard = ({ post }: any) => {
       setComments(
         // eslint-disable-next-line prettier/prettier
         comments.map((comment: any) =>
-          comment._id === commentId ? updatedComment : comment
+          comment.id === commentId ? updatedComment : comment
         )
       );
       setEditingCommentId(null); // Exit editing mode
@@ -227,7 +227,7 @@ const PostCard = ({ post }: any) => {
     try {
       await deleteComment({ authorId: userId, commentId }).unwrap();
       // eslint-disable-next-line prettier/prettier
-      setComments(comments.filter((comment: any) => comment._id !== commentId));
+      setComments(comments.filter((comment: any) => comment.id !== commentId));
       toast.success("Comment deleted!");
     } catch (error) {
       toast.error("Failed to delete comment");
@@ -250,7 +250,7 @@ const PostCard = ({ post }: any) => {
               
               <Link
                 className='text-small font-semibold leading-none text-default-600'
-                href={`/dashboard/user/${post?.userId._id}`}
+                href={`/dashboard/user/${post?.userId.id}`}
               >
                 {post?.userId?.name}
               </Link>
@@ -271,20 +271,22 @@ const PostCard = ({ post }: any) => {
               {newData?.data?.isPremium ? ( // Check if current user is premium and matches post user
                 <Link
                   className='text-small font-semibold leading-none text-default-600'
-                  href={`/dashboard/user/${post?.userId._id}`} // Render link for premium user
+                  href={`/dashboard/user/${post?.userId.id}`} // Render link for premium user
                 >
                   {post?.userId?.name}
                 </Link>
               ) : (
                 <span
-                className='text-small font-semibold leading-none text-default-600 cursor-pointer'
-                onClick={openPremiumModal}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openPremiumModal(); }}
-              >
-                {post?.userId?.name}
-              </span>
+                  className='text-small font-semibold leading-none text-default-600 cursor-pointer'
+                  onClick={openPremiumModal}
+                  role='button'
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") openPremiumModal();
+                  }}
+                >
+                  {post?.userId?.name}
+                </span>
               )}
 
               <span className='ml-3'>
@@ -305,10 +307,10 @@ const PostCard = ({ post }: any) => {
           radius='full'
           size='sm'
           variant='shadow'
-          onClick={() => handleFollowUser(post?.userId?._id)}
+          onClick={() => handleFollowUser(post?.userId?.id)}
         >
           {newData?.data?.following?.some(
-            (follower: any) => follower === post?.userId?._id
+            (follower: any) => follower === post?.userId?.id
           )
             ? "Following"
             : "Follow"}
@@ -318,18 +320,20 @@ const PostCard = ({ post }: any) => {
       <CardBody className='px-2 py-0 text-small text-default-400'>
         {post?.image.length > 0 && (
           <div>
-            <Image
-              removeWrapper
+            <img
+              // removeWrapper
               alt='Card background'
               className='z-0 w-full h-[300px] object-cover'
               src={post?.image[0]} // Assuming the first image
             />
           </div>
         )}
-       
+
         <p className='font-bold pt-2 text-blue-700'>{post?.title}</p>
- 
-        <p className=' font-medium'><RiUserVoiceFill/></p>
+
+        <p className=' font-medium'>
+          <RiUserVoiceFill />
+        </p>
         <p className='font-medium'> {post?.content}</p>
 
         <p className='font-bold pt-2  text-sm'>#{post?.category}</p>
@@ -341,7 +345,7 @@ const PostCard = ({ post }: any) => {
         {post?.comments.length > 0 ? (
           // eslint-disable-next-line prettier/prettier
           post?.comments?.map((comment: any) => (
-            <div key={comment?._id} className='text-gray-400 rounded '>
+            <div key={comment?.id} className='text-gray-400 rounded '>
               <div className='flex justify-between text-sm my-1'>
                 <div className='flex justify-center items-center gap-3 my-1'>
                   <Avatar
@@ -354,13 +358,13 @@ const PostCard = ({ post }: any) => {
                   <span>{comment?.commentText || "Anonymous"}</span>
                 </div>
                 <div className='flex gap-2'>
-                  {userId === comment?.author?._id && (
+                  {userId === comment?.author?.id && (
                     <>
                       <Button
                         className='h-[20px] rounded-full '
                         size='sm'
                         variant='flat'
-                        onClick={() => setEditingCommentId(comment?._id)}
+                        onClick={() => setEditingCommentId(comment?.id)}
                       >
                         Edit
                       </Button>
@@ -369,7 +373,7 @@ const PostCard = ({ post }: any) => {
                         color='danger'
                         size='sm'
                         variant='flat'
-                        onClick={() => handleDeleteComment(comment?._id)}
+                        onClick={() => handleDeleteComment(comment?.id)}
                       >
                         Delete
                       </Button>
@@ -377,7 +381,7 @@ const PostCard = ({ post }: any) => {
                   )}
                 </div>
               </div>
-              {editingCommentId === comment?._id ? (
+              {editingCommentId === comment?.id ? (
                 <div className='flex flex-col gap-2'>
                   <Input
                     placeholder='Edit comment...'
@@ -386,7 +390,7 @@ const PostCard = ({ post }: any) => {
                   />
                   <Button
                     size='sm'
-                    onClick={() => handleUpdateComment(comment?._id)}
+                    onClick={() => handleUpdateComment(comment?.id)}
                   >
                     Update
                   </Button>
@@ -415,7 +419,7 @@ const PostCard = ({ post }: any) => {
           className='ml-2 rounded-full text-white'
           color='primary'
           size='sm'
-          onClick={() => handleCreateComment(post?._id)}
+          onClick={() => handleCreateComment(post?.id)}
         >
           Post
         </Button>
@@ -425,13 +429,13 @@ const PostCard = ({ post }: any) => {
         <div className='flex gap-4'>
           <button
             className='text-large text-default-500'
-            onClick={() => handleLikePost(post?._id)}
+            onClick={() => handleLikePost(post?.id)}
           >
             {isLiked ? <BiSolidLike /> : <SlLike />} {likes?.length}
           </button>
           <button
             className='text-large text-default-500'
-            onClick={() => handleDislikePost(post?._id)}
+            onClick={() => handleDislikePost(post?.id)}
           >
             {isDisliked ? <BiSolidDislike /> : <SlDislike />} {dislikes?.length}
           </button>
@@ -444,7 +448,7 @@ const PostCard = ({ post }: any) => {
           <button className="text-large text-default-500">
             <div
               className="flex items-center"
-              onClick={() => handleSavePost(post?._id)}
+              onClick={() => handleSavePost(post?.id)}
             >
               <GiSelfLove className="text-2xl" />
             </div>
@@ -460,8 +464,8 @@ const PostCard = ({ post }: any) => {
               className='flex items-center'
               role='button' // Add role to indicate it's a button
               tabIndex={0} // Make the element focusable
-              onClick={() => handleSavePost(post?._id)}
-              onKeyDown={(e) => e.key === "Enter" && handleSavePost(post?._id)} // Handle keyboard interaction
+              onClick={() => handleSavePost(post?.id)}
+              onKeyDown={(e) => e.key === "Enter" && handleSavePost(post?.id)} // Handle keyboard interaction
             >
               <GiSelfLove className='text-2xl' />
             </div>

@@ -59,7 +59,7 @@ const UpdateProfileModal = ({
   };
 
   const handleUserUpdate = async () => {
-    const userId = user?._id;
+    const userId = user?.id;
 
     if (!userId) {
       toast.error("User ID is not available.");

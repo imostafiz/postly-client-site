@@ -15,7 +15,7 @@ import ProfileSkeleton from "@/src/skeleton/ProfileSkeleton";
 
 const RightSidebar = () => {
   const { data: newData, refetch: refetchUserData } = useGetUser();
-  const userId = newData?.data?._id;
+  const userId = newData?.data?.id;
   const { data, isLoading } = useGetAllUserQuery({});
   const [followUser] = useFollowUserMutation();
   const users = data?.data;
@@ -47,7 +47,7 @@ const RightSidebar = () => {
           ) : (
             users?.slice(0, 6).map((user: IUser) => (
               <div
-                key={user._id}
+                key={user.id}
                 className="border border-gray-900 rounded-xl p-2 my-3"
               >
                 <div className="flex justify-between">
@@ -70,17 +70,17 @@ const RightSidebar = () => {
                     </div>
                   </div>
                   <div>
-                    {user?._id !== userId && (
+                    {user?.id !== userId && (
                       <Button
                         className="h-[30px] md:px-5"
                         color="primary"
                         radius="full"
                         size="sm"
                         variant="shadow"
-                        onClick={() => handleFollowUser(user._id)}
+                        onClick={() => handleFollowUser(user.id)}
                       >
                         {newData?.data?.following?.some(
-                          (follower: any) => follower === user._id
+                          (follower: any) => follower === user.id
                         )
                           ? "Following"
                           : "Follow"}

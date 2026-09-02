@@ -23,7 +23,7 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
   // Handle post deletion
   const handleDelete = async () => {
     try {
-      await deletePost(singlePost._id).unwrap(); // Call the delete mutation with the post ID
+      await deletePost(singlePost.id).unwrap(); // Call the delete mutation with the post ID
       toast.success("Post deleted successfully");
       setIsDeleteModalOpen(false);
     } catch (error) {
@@ -35,7 +35,7 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
   const handleUpdate = async (updatedPost: Partial<IPost>) => {
     try {
       await updatePost({
-        postId: singlePost._id,
+        postId: singlePost.id,
         updateData: updatedPost,
       }).unwrap();
       toast.success("Post updated successfully");

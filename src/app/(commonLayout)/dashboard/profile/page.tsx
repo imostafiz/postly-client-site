@@ -11,7 +11,7 @@ import UpdateProfileModal from "@/src/modal/UpdateProfileModal";
 
 const Profile = () => {
   const { data: user } = useGetUser();
-  const id = user?.data?._id;
+  const id = user?.data?.id;
 
   const { data } = useGetMyPostsQuery(id, {
     skip: !id,
@@ -51,7 +51,7 @@ const Profile = () => {
       <Divider className="my-4 border-t-2 border-gray-300" />
       <div>
         {posts?.map((singlePost: IPost) => (
-          <MyPostCard key={singlePost._id} singlePost={singlePost} />
+          <MyPostCard key={singlePost.id} singlePost={singlePost} />
         ))}
       </div>
 

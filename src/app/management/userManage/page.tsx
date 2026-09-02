@@ -37,7 +37,7 @@ const UserManage = () => {
         </thead>
         <tbody>
           {allUsers?.map((user: IUser) => (
-            <tr key={user._id} className='border-b '>
+            <tr key={user.id} className='border-b '>
               <td className='py-1 px-4'>
                 <img
                   alt={user.name}
@@ -51,7 +51,7 @@ const UserManage = () => {
               <td className='py-2 px-4'>
                 <button
                   className='text-red-600 hover:text-red-800'
-                  onClick={() => handleDelete(user._id)}
+                  onClick={() => handleDelete(user.id)}
                 >
                   <FiTrash2 className='w-6 h-6' />
                 </button>

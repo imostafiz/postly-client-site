@@ -77,7 +77,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({
         content: formData.content,
         category: formData.category,
         image: imageLinks,
-        userId: user?._id,
+        userId: user?.id,
       };
 
       //   await createPost(finalData);

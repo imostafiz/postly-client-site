@@ -25,7 +25,7 @@ const CreatePost: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [uploadedImages, setUploadedImages] = useState<string[]>([]); // To store
 
-  const userId = user?._id;
+  const userId = user?.id;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -57,7 +57,6 @@ const RegisterPage = () => {
       const userData = {
         ...formData,
         profileImage: profileImageUrl || undefined,
-        role: "user",
       };
       console.log(userData);
       const response = await registerUser(userData);
