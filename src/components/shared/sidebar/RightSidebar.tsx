@@ -110,7 +110,7 @@ const RightSidebar = () => {
         <div className="mt-8">
           <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Trending Topics</h3>
           <div className="flex flex-wrap gap-2">
-            {["Gardening", "Plants", "Organic", "Flowers", "Vegetables", "Landscaping"].map((tag) => (
+            {["Trending", "Music", "Sports", "Travel", "Food", "Fashion"].map((tag) => (
               <span
                 key={tag}
                 className="px-3 py-1.5 text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full hover:bg-blue-500/20 cursor-pointer transition-colors"

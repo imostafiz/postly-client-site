@@ -4,11 +4,12 @@ import { Input } from "@nextui-org/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 import { toast } from "sonner";
+import { FaEnvelope, FaLock, FaUsers, FaCamera, FaHeart } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 
 import { useForgetPasswordMutation } from "@/src/redux/features/user";
 import { useUserLogin } from "@/src/hooks/auth.hooks";
 import { useUser } from "@/src/context/user.provider";
-import { Divider } from "@nextui-org/react";
 
 interface LoginDataType {
   email: string;
@@ -17,7 +18,7 @@ interface LoginDataType {
 
 const LoginPage = () => {
   const searchParams = useSearchParams();
-  const [forgetPassword] = useForgetPasswordMutation(); // Forgot password mutation hook
+  const [forgetPassword] = useForgetPasswordMutation();
 
   const redirect = searchParams.get("redirect");
   const router = useRouter();
@@ -27,34 +28,24 @@ const LoginPage = () => {
     password: "",
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-  const [forgotEmail, setForgotEmail] = useState(""); // Forgot password email
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setLoginData({ ...loginData, [name]: value });
-  };
-
-  const handleForgotEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForgotEmail(e.target.value);
-  };
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
   };
 
   const handleForgotPassword = async () => {
     if (!forgotEmail) {
       toast.error("Please enter a valid email.");
-
       return;
     }
-
     try {
       await forgetPassword({ email: forgotEmail }).unwrap();
       toast.success("Password reset link sent to your email.");
-      setIsModalOpen(false); // Close modal after submitting
+      setIsModalOpen(false);
+      setForgotEmail("");
     } catch (error) {
       toast.error("Failed to send reset link.");
     }
@@ -68,206 +59,242 @@ const LoginPage = () => {
   } = useUserLogin();
 
   const handleLogin = () => {
-    const data = {
-      email: loginData.email,
-      password: loginData.password,
-    };
-
-    handleUserLogin(data);
+    if (!loginData.email || !loginData.password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+    handleUserLogin(loginData);
     setIsLoading(true);
   };
 
   useEffect(() => {
     if (isSuccess) {
-      if (redirect) {
-        router.push(redirect);
-      } else {
-        router.push("/dashboard");
-      }
+      router.push(redirect || "/dashboard");
     }
-
     if (isError) {
       toast.error("Login failed. Please check your credentials.");
     }
   }, [isSuccess, isError, redirect, router]);
 
-  // Function to handle autofilling based on button clicked
-  const handleButtonClick = (button: number) => {
-    if (button === 1) {
-      // Autofill for user1
-      setLoginData({ email: "mostafiz@gmail.com", password: "123456" });
-    } else if (button === 2) {
-      // Autofill for user2
-      setLoginData({ email: "nil@gmail.com", password: "123456" });
-    }
-  };
-
   return (
-    <>
-      <div className='md:flex md:justify-center md:items-center'>
-        <div className='hidden md:flex justify-start items-start'>
-          <p className=' font-title2 text-[100px] flex justify-start items-start mr-[50px]'>
-            Find <br /> Me
-          </p>
-        </div>
-        <Divider orientation='vertical' className=' md:h-[350px] bg-gray-800 '>
-          {" "}
-        </Divider>
-        <div className='flex h-screen items-center justify-center md:pl-12'>
-          <div className='shadow-lg rounded-lg p-8 w-full max-w-md'>
-            <h1 className='hidden md:block text-3xl font-black text-center mb-12 font-title2'>
-              {/* Lets save the Earth. */}
-            </h1>
-            <h1 className='block md:hidden font-title2 text-2xl text-center'>
-              Find Me
-            </h1>
+    <div className="min-h-screen bg-gray-950 flex">
+      {/* Left Side - Branding */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-gray-950" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
-            <div>
+        <div className="relative z-10 flex flex-col justify-center px-16">
+          {/* Logo */}
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25">
+              <span className="text-white font-bold text-2xl">P</span>
+            </div>
+            <span className="text-3xl font-bold text-white">Postly</span>
+          </div>
+
+          {/* Tagline */}
+          <h1 className="text-5xl font-bold text-white leading-tight mb-6">
+            Connect with
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              Friends
+            </span>
+          </h1>
+          <p className="text-gray-400 text-lg mb-12 max-w-md">
+            Share your moments, discover trends, and connect with people who matter.
+          </p>
+
+          {/* Features */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center">
+                <FaUsers className="text-blue-400" size={18} />
+              </div>
+              <span className="text-gray-300">Connect with friends & family</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center">
+                <FaCamera className="text-green-400" size={18} />
+              </div>
+              <span className="text-gray-300">Share photos & videos</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
+                <FaHeart className="text-purple-400" size={18} />
+              </div>
+              <span className="text-gray-300">Discover what&apos;s trending</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side - Login Form */}
+      <div className="flex-1 flex items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md">
+          {/* Mobile Logo */}
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-10">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+              <span className="text-white font-bold text-xl">P</span>
+            </div>
+            <span className="text-2xl font-bold text-white">Postly</span>
+          </div>
+
+          {/* Form Header */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-white mb-2">Welcome back</h2>
+            <p className="text-gray-500">Sign in to your account</p>
+          </div>
+
+          {/* Form */}
+          <div className="space-y-4">
+            <div className="relative">
+              <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
               <Input
-                label='Email'
-                labelPlacement={"outside"}
-                name='email'
-                type='email'
+                name="email"
+                type="email"
+                placeholder="Email address"
                 value={loginData.email}
                 onChange={handleInputChange}
+                className="pl-12"
+                classNames={{
+                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  input: "text-white placeholder-gray-500",
+                }}
               />
             </div>
-            <div>
+
+            <div className="relative">
+              <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
               <Input
-                label='Password'
-                labelPlacement={"outside"}
-                name='password'
-                type='password'
+                name="password"
+                type="password"
+                placeholder="Password"
                 value={loginData.password}
                 onChange={handleInputChange}
+                className="pl-12"
+                classNames={{
+                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  input: "text-white placeholder-gray-500",
+                }}
               />
             </div>
 
-            <div className='mt-4'>
-              {/* Button 1 */}
-              <Button
-                color='primary'
-                variant='ghost'
-                onClick={() => handleButtonClick(1)}
-                className='w-full mb-2'
+            <div className="flex justify-end">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
               >
-                user credential
-              </Button>
-
-              {/* Button 2 */}
-              <Button
-                color='secondary'
-                variant='ghost'
-                onClick={() => handleButtonClick(2)}
-                className='w-full'
-              >
-                admin credential
-              </Button>
+                Forgot password?
+              </button>
             </div>
 
             <Button
-              className='w-full mt-8 rounded-xl'
-              color='primary'
+              fullWidth
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold"
               isLoading={isPending}
-              size='sm'
-              variant='ghost'
               onClick={handleLogin}
             >
-              {isPending ? "Logging in..." : "Login"}
+              {isPending ? "Signing in..." : "Sign in"}
             </Button>
-
-            <div className='flex items-center my-6'>
-              <div className='border-t w-full' />
-              <span className='mx-4 text-gray-500'>or</span>
-              <div className='border-t w-full' />
-            </div>
-
-            <div className='text-center'>
-              <p className='text-gray-700'>
-                Don’t have an account?{" "}
-                <a
-                  className='text-blue-600 font-semibold hover:underline'
-                  href='/register'
-                >
-                  Create one now
-                </a>
-              </p>
-            </div>
           </div>
 
-          {/* Modal for Forgot Password */}
-          {isModalOpen && (
-            <div
-              aria-modal='true'
-              className='fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center transition-opacity duration-300 ease-in-out'
-              role='dialog'
-            >
-              {/* Modal Container */}
-              <div className='relative bg-[#1e1e1e] p-8 rounded-xl shadow-lg w-full max-w-md transform transition-transform duration-500 ease-in-out scale-100'>
-                <h2 className='text-2xl font-bold text-white text-center mb-6'>
-                  Forgot Your Password?
-                </h2>
-                <p className='text-gray-400 text-center mb-4'>
-                  Enter your email address and take a link to reset your
-                  password from your email.
-                </p>
+          {/* Divider */}
+          <div className="flex items-center my-8">
+            <div className="flex-1 border-t border-gray-800" />
+            <span className="px-4 text-sm text-gray-600">or continue with</span>
+            <div className="flex-1 border-t border-gray-800" />
+          </div>
 
-                <input
-                  className='w-full p-3 bg-[#2d2d2d] border border-gray-600 text-white rounded-full focus:outline-none focus:ring-2 focus:ring-[#0070f3] transition duration-200 ease-in-out'
-                  placeholder='Enter your email'
-                  type='email'
-                  value={forgotEmail}
-                  onChange={handleForgotEmailChange}
-                />
+          {/* Register Link */}
+          <div className="text-center">
+            <p className="text-gray-500">
+              Don&apos;t have an account?{" "}
+              <a
+                href="/register"
+                className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              >
+                Create one now
+              </a>
+            </p>
+          </div>
 
-                {/* Buttons */}
-                <div className='flex justify-between mt-6'>
-                  <Button
-                    className='bg-[#0070f3] hover:bg-[#005bb5] text-white px-2 rounded-full transition duration-300 ease-in-out'
-                    color='primary'
-                    onClick={handleForgotPassword}
-                  >
-                    Submit
-                  </Button>
-                  <Button
-                    className='bg-[#333333] hover:bg-[#444444] text-white px-2 rounded-full transition duration-300 ease-in-out'
-                    onClick={toggleModal}
-                  >
-                    Close
-                  </Button>
-                </div>
-
-                {/* Close Button */}
-                <button
-                  aria-label='Close'
-                  className='absolute top-3 right-3 text-white text-lg font-bold hover:text-gray-400 transition duration-300 ease-in-out'
-                  tabIndex={0} // Make it focusable for keyboard interaction
-                  onClick={toggleModal}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") toggleModal();
-                  }}
-                >
-                  &times;
-                </button>
-              </div>
-            </div>
-          )}
+          {/* Footer */}
+          <p className="text-center text-xs text-gray-700 mt-12">
+            &copy; 2024 Postly. All rights reserved.
+          </p>
         </div>
       </div>
-      <div className='text-gray-700 text-center -mt-12 mb-4'>
-        <p>
-          Inspiration from X and Instagram.© 2024 Find Me. All Rights Reserved
-        </p>
-      </div>
-    </>
+
+      {/* Forgot Password Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => setIsModalOpen(false)}
+          />
+          <div className="relative bg-gray-900 border border-gray-800 rounded-2xl p-8 w-full max-w-md shadow-2xl">
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+            >
+              <IoMdClose size={24} />
+            </button>
+
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <FaLock className="text-blue-400" size={24} />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Forgot Password?</h2>
+              <p className="text-gray-500 text-sm">
+                Enter your email and we&apos;ll send you a reset link.
+              </p>
+            </div>
+
+            <div className="relative mb-6">
+              <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={forgotEmail}
+                onChange={(e) => setForgotEmail(e.target.value)}
+                className="pl-12"
+                classNames={{
+                  inputWrapper: "bg-gray-800 border-gray-700",
+                  input: "text-white placeholder-gray-500",
+                }}
+              />
+            </div>
+
+            <div className="flex gap-3">
+              <Button
+                fullWidth
+                variant="flat"
+                className="bg-gray-800 text-gray-300"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                fullWidth
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                onClick={handleForgotPassword}
+              >
+                Send Reset Link
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
 const WrappedLoginPage = () => (
   <Suspense
     fallback={
-      <div className='min-h-screen flex justify-center items-center'>
-        <p>Loading...</p>
+      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
       </div>
     }
   >

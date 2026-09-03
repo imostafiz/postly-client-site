@@ -1,8 +1,8 @@
 import { Button } from "@nextui-org/button";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 import { IPost } from "@/src/types";
 import UpdatePostModal from "@/src/modal/UpdatePostModal";
@@ -16,14 +16,12 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  // Use Redux mutations for post update and delete
   const [deletePost] = useDeletePostMutation();
   const [updatePost] = useUpdatePostMutation();
 
-  // Handle post deletion
   const handleDelete = async () => {
     try {
-      await deletePost(singlePost.id).unwrap(); // Call the delete mutation with the post ID
+      await deletePost(singlePost.id).unwrap();
       toast.success("Post deleted successfully");
       setIsDeleteModalOpen(false);
     } catch (error) {
@@ -31,7 +29,6 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
     }
   };
 
-  // Handle post update
   const handleUpdate = async (updatedPost: Partial<IPost>) => {
     try {
       await updatePost({
@@ -46,59 +43,68 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
   };
 
   return (
-    <div>
-      <Card className="w-full my-4">
-        <CardHeader className="justify-between" />
-        <CardBody className="px-2 py-0 text-small text-default-400">
-          {/* Check if image is an array and has elements */}
-          {Array.isArray(singlePost?.image) && singlePost.image.length > 0 && (
-            <Image
-              removeWrapper
-              alt="Post image"
-              className="z-0 w-full h-[300px] object-cover"
-              src={singlePost.image[0]} // Access the first image
-            />
-          )}
-          <p className="font-bold pt-2 text-blue-700">{singlePost?.title}</p>
-          <p className="font-bold pt-2">#{singlePost?.category}</p>
-          <p className="my-4">{singlePost?.content}</p>
-        </CardBody>
-        <CardFooter className="gap-3 flex ">
-          <Button
-            className="rounded-full px-1 h-[25px]"
-            color="primary"
-            variant="shadow"
-            onPress={() => setIsUpdateModalOpen(true)}
-          >
-            Edit
-          </Button>
-          <Button
-            className="rounded-full px-1 h-[25px]"
-            color="danger"
-            variant="shadow"
-            onPress={() => setIsDeleteModalOpen(true)}
-          >
-            Delete
-          </Button>
-        </CardFooter>
-      </Card>
+    <div className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden">
+      {/* Post Image */}
+      {Array.isArray(singlePost?.image) && singlePost.image.length > 0 && (
+        <div className="relative">
+          <img
+            alt="Post image"
+            className="w-full h-[300px] object-cover"
+            src={singlePost.image[0]}
+          />
+        </div>
+      )}
 
-      {/* Update Modal */}
+      {/* Post Content */}
+      <div className="p-4 space-y-3">
+        <h3 className="text-lg font-bold text-white">{singlePost?.title}</h3>
+        <p className="text-gray-300 text-sm leading-relaxed">{singlePost?.content}</p>
+        <div className="flex flex-wrap gap-2">
+          <span className="px-2.5 py-1 text-xs font-medium text-blue-400 bg-blue-500/10 rounded-full">
+            #{singlePost?.category}
+          </span>
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="px-4 py-3 border-t border-gray-800 flex justify-end gap-2">
+        <Button
+          size="sm"
+          radius="full"
+          variant="flat"
+          className="bg-gray-800 text-gray-300 hover:bg-blue-500/20 hover:text-blue-400"
+          startContent={<FaEdit size={14} />}
+          onPress={() => setIsUpdateModalOpen(true)}
+        >
+          Edit
+        </Button>
+        <Button
+          size="sm"
+          radius="full"
+          variant="flat"
+          className="bg-gray-800 text-gray-300 hover:bg-red-500/20 hover:text-red-400"
+          startContent={<FaTrash size={14} />}
+          onPress={() => setIsDeleteModalOpen(true)}
+        >
+          Delete
+        </Button>
+      </div>
+
+      {/* Modals */}
       {isUpdateModalOpen && (
         <UpdatePostModal
           isOpen={isUpdateModalOpen}
-          post={singlePost} // Pass the single post to the modal
+          post={singlePost}
           onClose={() => setIsUpdateModalOpen(false)}
-          onUpdate={handleUpdate} // Pass the update handler
+          onUpdate={handleUpdate}
         />
       )}
 
-      {/* Delete Modal */}
       {isDeleteModalOpen && (
         <DeletePostModal
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}
-          onDelete={handleDelete} // Pass the delete handler
+          onDelete={handleDelete}
         />
       )}
     </div>

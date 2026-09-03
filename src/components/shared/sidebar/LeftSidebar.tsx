@@ -141,7 +141,7 @@ const LeftSidebar = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white tracking-tight">Postly</h1>
-                <p className="text-xs text-gray-500">Gardening Community</p>
+                <p className="text-xs text-gray-500">Social Platform</p>
               </div>
             </Link>
           </div>
