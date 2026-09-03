@@ -7,8 +7,8 @@ import { Providers } from "./providers";
 import { fontSans } from "@/src/config/fonts";
 
 export const metadata: Metadata = {
-  title: "Find Me",
-  description: "Find Me social platform",
+  title: "Postly - Gardening Community",
+  description: "Connect with fellow gardening enthusiasts. Share tips, ideas, and your green journey.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -27,20 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang='en'>
+    <html suppressHydrationWarning lang="en" className="dark">
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-gray-950 text-white font-sans antialiased",
           fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className='relative flex flex-col h-screen'>
-            <main className='container mx-auto max-w-7xl pt-5  flex-grow px-2'>
-              {children}
-            </main>
-          </div>
+          {children}
         </Providers>
       </body>
     </html>
