@@ -85,10 +85,10 @@ const LeftSidebar = () => {
   return (
     <>
       <button
-        className='lg:hidden fixed top-1 right-4 z-50 p-2 bg-blue-600 rounded-full'
+        className="lg:hidden fixed top-1 right-4 z-50 p-2 bg-blue-600 rounded-full"
         onClick={toggleSidebar}
       >
-        <FaBars className='text-white' size={24} />
+        <FaBars className="text-white" size={24} />
       </button>
 
       {/* Sidebar for large devices, toggle for small */}
@@ -98,53 +98,50 @@ const LeftSidebar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 lg:translate-x-0 w-64 z-40 bg-black`}
       >
-        <ul className='text-xl text-white'>
-          <li className=''>
-            <p className='text-3xl font-title2 font-bold text-white'>
-              {" "}
-              Find Me
-            </p>
+        <ul className="text-xl text-white">
+          <li className="">
+            <p className="text-3xl font-title2 font-bold text-white"> Postly</p>
           </li>
           {user?.isPremium === false && (
             <li>
               <button
-                className='flex items-center justify-center text-yellow-400 border border-yellow-400 rounded-full px-2 py-1 text-sm mt-2'
+                className="flex items-center justify-center text-yellow-400 border border-yellow-400 rounded-full px-2 py-1 text-sm mt-2"
                 onClick={openPremiumModal}
               >
                 <RiVipCrownFill size={20} />
-                <span className='ml-2'>Premium</span>
+                <span className="ml-2">Premium</span>
               </button>
             </li>
           )}
           <Link href={"/dashboard"}>
             <li>
-              <button className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'>
-                <FaHome className='text-blue-400' size={20} />
+              <button className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer">
+                <FaHome className="text-blue-400" size={20} />
                 <span>Home</span>
               </button>
             </li>
           </Link>
           <li>
             <button
-              className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'
+              className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer"
               onClick={openModal}
             >
-              <FaPlus className='text-blue-400' size={20} />
+              <FaPlus className="text-blue-400" size={20} />
               <span>Create</span>
             </button>
           </li>
           <Link href={"/dashboard/friend"}>
             <li>
-              <button className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'>
-                <FaUserFriends className='text-blue-400' size={20} />
+              <button className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer">
+                <FaUserFriends className="text-blue-400" size={20} />
                 <span>Friends</span>
               </button>
             </li>
           </Link>
           <Link href={"/dashboard/favorite"}>
             <li>
-              <button className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'>
-                <FaHeart className='text-blue-400' size={20} />
+              <button className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer">
+                <FaHeart className="text-blue-400" size={20} />
                 <span>Favorite</span>
               </button>
             </li>
@@ -152,8 +149,8 @@ const LeftSidebar = () => {
           {user?.isPremium === true && (
             <Link href={"/contact"}>
               <li>
-                <button className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'>
-                  <FaFileContract className='text-blue-400' size={20} />
+                <button className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer">
+                  <FaFileContract className="text-blue-400" size={20} />
                   <span>Contact</span>
                 </button>
               </li>
@@ -161,43 +158,43 @@ const LeftSidebar = () => {
           )}
           <Link href={"/about"}>
             <li>
-              <button className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'>
-                <FcAbout className='text-blue-400' size={20} />
+              <button className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer">
+                <FcAbout className="text-blue-400" size={20} />
                 <span>About us</span>
               </button>
             </li>
           </Link>
-          <Divider className='my-4 md:block hidden' />{" "}
+          <Divider className="my-4 md:block hidden" />{" "}
           {/* Divider for medium devices */}
           <Link href={"/dashboard/profile"}>
             <li>
-              <button className='flex items-center pt-3 space-x-4 hover:text-blue-600 cursor-pointer'>
-                <Avatar size='sm' src={user?.profileImage} />
+              <button className="flex items-center pt-3 space-x-4 hover:text-blue-600 cursor-pointer">
+                <Avatar size="sm" src={user?.profileImage} />
                 <span>Profile</span>
                 {user?.isPremium && (
-                  <MdVerified className='text-blue-700 ml-3' />
+                  <MdVerified className="text-blue-700 ml-3" />
                 )}
               </button>
             </li>
           </Link>
-          <Divider className='mt-4' />
+          <Divider className="mt-4" />
           {user?.role === "admin" && (
             <Link href={"/management/analysis"}>
               <li>
-                <button className='flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer'>
-                  <FaCog className='text-blue-400' size={20} />
+                <button className="flex items-center pt-5 space-x-4 hover:text-blue-600 cursor-pointer">
+                  <FaCog className="text-blue-400" size={20} />
                   <span>Admin Layout</span>
                 </button>
               </li>
             </Link>
           )}
-          <Divider className='my-4' />
+          <Divider className="my-4" />
           <li>
             <button
-              className='flex items-center pt-3 space-x-4 hover:text-blue-600 cursor-pointer'
+              className="flex items-center pt-3 space-x-4 hover:text-blue-600 cursor-pointer"
               onClick={handleLogOut}
             >
-              <FaSignOutAlt className='text-blue-400' size={20} />
+              <FaSignOutAlt className="text-blue-400" size={20} />
               <span>Logout</span>
             </button>
           </li>
@@ -205,7 +202,7 @@ const LeftSidebar = () => {
       </aside>
 
       {/* Bottom Navigation for small devices */}
-      <nav className='fixed bottom-0 w-full bg-black shadow-md py-2 flex justify-around lg:hidden z-40'>
+      <nav className="fixed bottom-0 w-full bg-black shadow-md py-2 flex justify-around lg:hidden z-40">
         <Link href={"/dashboard"}>
           <FaHome size={24} />
         </Link>
@@ -219,7 +216,7 @@ const LeftSidebar = () => {
           <FaHeart size={24} />
         </Link>
         <Link href={"/dashboard/profile"}>
-          <Avatar size='sm' src={user?.profileImage} />
+          <Avatar size="sm" src={user?.profileImage} />
         </Link>
       </nav>
 
