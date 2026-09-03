@@ -104,7 +104,10 @@ const LeftSidebar = () => {
               {" "}
               Find Me
             </p>
-            <p className="text-3xl font-title2 font-bold text-white"> Postly</p>
+            <p className="text-3xl font-title2 font-bold text-white">
+              {" "}
+              Postly from v3
+            </p>
           </li>
           {user?.isPremium === false && (
             <li>
