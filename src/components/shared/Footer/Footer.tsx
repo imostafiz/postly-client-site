@@ -1,14 +1,20 @@
 const Footer = () => {
   return (
-    <div className='text-sm text-gray-600 text-center  '>
-      <p className='pt-3'>
-        About Help Press API Jobs Privacy Terms Locations Language{" "}
-        <span className='font-title2'>Find Me</span> Verified
+    <footer className="space-y-3">
+      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-600">
+        {["About", "Help", "Press", "API", "Jobs", "Privacy", "Terms", "Locations"].map((link) => (
+          <span
+            key={link}
+            className="hover:text-gray-400 cursor-pointer transition-colors"
+          >
+            {link}
+          </span>
+        ))}
+      </div>
+      <p className="text-xs text-gray-700">
+        &copy; 2024 Postly &middot; Gardening Community
       </p>
-      <p className='pt-3'>
-        © 2024 from <span className='font-title2'>Find Me</span>
-      </p>
-    </div>
+    </footer>
   );
 };
 

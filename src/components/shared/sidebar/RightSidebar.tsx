@@ -1,7 +1,8 @@
 "use client";
 
 import { toast } from "sonner";
-import { Avatar, Button, Divider } from "@nextui-org/react";
+import { Avatar, Button } from "@nextui-org/react";
+import { FaUserPlus, FaCheck } from "react-icons/fa";
 
 import Footer from "../Footer/Footer";
 
@@ -24,7 +25,6 @@ const RightSidebar = () => {
     try {
       const followInfo = { followerId: userId, followeeId };
       const res = await followUser({ followInfo }).unwrap();
-
       await refetchUserData();
       toast.success(res?.message);
     } catch (error: any) {
@@ -32,69 +32,101 @@ const RightSidebar = () => {
     }
   };
 
+  const isFollowing = (followeeId: string) => {
+    return newData?.data?.following?.some((follower: any) => follower === followeeId);
+  };
+
   return (
-    <>
-      <div className="hidden md:block md:mx-8 md:w-1/4">
-        <div className="text-gray-600 pt-3">
-          <p>Follow them for relevant post</p>
-          <Divider className="mt-3" />
+    <aside className="hidden lg:block fixed right-0 top-0 h-screen w-[320px] border-l border-gray-800 bg-gray-950 overflow-y-auto">
+      <div className="p-6">
+        {/* Search Header */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-white mb-1">Suggested for you</h2>
+          <p className="text-sm text-gray-500">People you may know</p>
         </div>
-        <div className="w-full">
+
+        {/* User List */}
+        <div className="space-y-3">
           {isLoading ? (
-          <>
-          <ProfileSkeleton/>
-          </>
+            <div className="space-y-4">
+              {[...Array(4)].map((_, i) => (
+                <ProfileSkeleton key={i} />
+              ))}
+            </div>
           ) : (
-            users?.slice(0, 6).map((user: IUser) => (
+            users?.slice(0, 8).map((user: IUser) => (
               <div
                 key={user.id}
-                className="border border-gray-900 rounded-xl p-2 my-3"
+                className="flex items-center justify-between p-3 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-700 transition-colors"
               >
-                <div className="flex justify-between">
-                  <div className="flex gap-4">
-                    <div>
-                      <Avatar
-                        isBordered
-                        radius="full"
-                        size="md"
-                        src={user.profileImage}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1 items-start justify-center">
-                      <h4 className="text-small font-semibold leading-none text-default-600">
-                        {user.name}
-                      </h4>
-                      <h5 className="text-small tracking-tight text-default-400">
-                        {user.email}
-                      </h5>
-                    </div>
-                  </div>
-                  <div>
-                    {user?.id !== userId && (
-                      <Button
-                        className="h-[30px] md:px-5"
-                        color="primary"
-                        radius="full"
-                        size="sm"
-                        variant="shadow"
-                        onClick={() => handleFollowUser(user.id)}
-                      >
-                        {newData?.data?.following?.some(
-                          (follower: any) => follower === user.id
-                        )
-                          ? "Following"
-                          : "Follow"}
-                      </Button>
-                    )}
+                <div className="flex items-center gap-3 min-w-0">
+                  <Avatar
+                    isBordered
+                    radius="full"
+                    size="md"
+                    src={user.profileImage}
+                    className="flex-shrink-0"
+                  />
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-semibold text-white truncate">
+                      {user.name}
+                    </h4>
+                    <p className="text-xs text-gray-500 truncate">
+                      {user.email}
+                    </p>
                   </div>
                 </div>
+
+                {user?.id !== userId && (
+                  <Button
+                    size="sm"
+                    radius="full"
+                    variant={isFollowing(user.id) ? "flat" : "shadow"}
+                    color={isFollowing(user.id) ? "default" : "primary"}
+                    className={`flex-shrink-0 ml-3 ${
+                      isFollowing(user.id)
+                        ? "bg-gray-800 text-gray-400"
+                        : ""
+                    }`}
+                    onClick={() => handleFollowUser(user.id)}
+                  >
+                    {isFollowing(user.id) ? (
+                      <span className="flex items-center gap-1">
+                        <FaCheck size={10} /> Following
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-1">
+                        <FaUserPlus size={10} /> Follow
+                      </span>
+                    )}
+                  </Button>
+                )}
               </div>
             ))
           )}
+        </div>
+
+        {/* Trending Section */}
+        <div className="mt-8">
+          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Trending Topics</h3>
+          <div className="flex flex-wrap gap-2">
+            {["Gardening", "Plants", "Organic", "Flowers", "Vegetables", "Landscaping"].map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1.5 text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full hover:bg-blue-500/20 cursor-pointer transition-colors"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-8 pt-6 border-t border-gray-800">
           <Footer />
         </div>
       </div>
-    </>
+    </aside>
   );
 };
 
