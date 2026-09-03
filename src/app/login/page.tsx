@@ -4,7 +4,7 @@ import { Input } from "@nextui-org/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 import { toast } from "sonner";
-import { FaEnvelope, FaLock, FaLeaf, FaSeedling, FaTree } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaUsers, FaCamera, FaHeart } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
 import { useForgetPasswordMutation } from "@/src/redux/features/user";
@@ -97,32 +97,32 @@ const LoginPage = () => {
             Connect with
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Gardeners
+              Friends
             </span>
           </h1>
           <p className="text-gray-400 text-lg mb-12 max-w-md">
-            Share your gardening journey, discover new tips, and grow together with our community of plant enthusiasts.
+            Share your moments, discover trends, and connect with people who matter.
           </p>
 
           {/* Features */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center">
-                <FaLeaf className="text-blue-400" size={18} />
+                <FaUsers className="text-blue-400" size={18} />
               </div>
-              <span className="text-gray-300">Share tips & tricks with the community</span>
+              <span className="text-gray-300">Connect with friends & family</span>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center">
-                <FaSeedling className="text-green-400" size={18} />
+                <FaCamera className="text-green-400" size={18} />
               </div>
-              <span className="text-gray-300">Track your plant growth journey</span>
+              <span className="text-gray-300">Share photos & videos</span>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
-                <FaTree className="text-purple-400" size={18} />
+                <FaHeart className="text-purple-400" size={18} />
               </div>
-              <span className="text-gray-300">Connect with fellow gardeners</span>
+              <span className="text-gray-300">Discover what&apos;s trending</span>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ const LoginPage = () => {
           {/* Form Header */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-white mb-2">Welcome back</h2>
-            <p className="text-gray-500">Sign in to continue to your garden</p>
+            <p className="text-gray-500">Sign in to your account</p>
           </div>
 
           {/* Form */}

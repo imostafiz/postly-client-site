@@ -139,7 +139,7 @@ const Profile = () => {
           <div className="text-center py-12">
             <FaImage className="mx-auto text-gray-700 mb-4" size={48} />
             <p className="text-gray-500 text-lg">No posts yet</p>
-            <p className="text-gray-600 text-sm mt-1">Start sharing your gardening journey!</p>
+            <p className="text-gray-600 text-sm mt-1">Share your first post!</p>
           </div>
         )}
       </div>

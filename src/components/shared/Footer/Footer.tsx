@@ -12,7 +12,7 @@ const Footer = () => {
         ))}
       </div>
       <p className="text-xs text-gray-700">
-        &copy; 2024 Postly &middot; Gardening Community
+        &copy; 2024 Postly &middot; Social Platform
       </p>
     </footer>
   );

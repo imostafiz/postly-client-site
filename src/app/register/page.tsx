@@ -5,7 +5,7 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { FaUser, FaEnvelope, FaLock, FaPhone, FaMapMarkerAlt, FaImage, FaLeaf, FaSeedling, FaTree } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaPhone, FaMapMarkerAlt, FaImage, FaUsers, FaCamera, FaHeart } from "react-icons/fa";
 
 import { registerUser } from "@/src/services/authService";
 import { useUser } from "@/src/context/user.provider";
@@ -100,33 +100,33 @@ const RegisterPage = () => {
           <h1 className="text-5xl font-bold text-white leading-tight mb-6">
             Start Your
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
-              Green Journey
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              Journey
             </span>
           </h1>
           <p className="text-gray-400 text-lg mb-12 max-w-md">
-            Join our community of gardeners. Share your progress, learn new techniques, and watch your garden flourish.
+            Join millions of people sharing their stories, ideas, and moments. Connect with friends and discover new content.
           </p>
 
           {/* Features */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center">
-                <FaLeaf className="text-blue-400" size={18} />
+                <FaUsers className="text-blue-400" size={18} />
               </div>
-              <span className="text-gray-300">Create your gardening profile</span>
+              <span className="text-gray-300">Create your profile</span>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center">
-                <FaSeedling className="text-green-400" size={18} />
+                <FaCamera className="text-green-400" size={18} />
               </div>
-              <span className="text-gray-300">Share photos of your plants</span>
+              <span className="text-gray-300">Share photos & moments</span>
             </div>
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
-                <FaTree className="text-purple-400" size={18} />
+                <FaHeart className="text-purple-400" size={18} />
               </div>
-              <span className="text-gray-300">Get advice from experts</span>
+              <span className="text-gray-300">Get advice from friends</span>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@ const RegisterPage = () => {
           {/* Form Header */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-white mb-2">Create an account</h2>
-            <p className="text-gray-500">Join our gardening community today</p>
+            <p className="text-gray-500">Join the conversation today</p>
           </div>
 
           {/* Form */}

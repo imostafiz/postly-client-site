@@ -39,7 +39,7 @@ const AnalysisPage = () => {
 
   // Data for Post Analysis Pie Chart
   const postData = {
-    labels: ["Forest", "Tree", "Plant", "Gardening"], // Example post categories
+    labels: ["Lifestyle", "Travel", "Food", "Music"], // Example post categories
     datasets: [
       {
         label: "Post Count",

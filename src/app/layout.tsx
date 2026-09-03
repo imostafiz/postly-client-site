@@ -7,8 +7,8 @@ import { Providers } from "./providers";
 import { fontSans } from "@/src/config/fonts";
 
 export const metadata: Metadata = {
-  title: "Postly - Gardening Community",
-  description: "Connect with fellow gardening enthusiasts. Share tips, ideas, and your green journey.",
+  title: "Postly - Social Media Platform",
+  description: "Connect with friends, share moments, and express yourself on Postly.",
   icons: {
     icon: "/favicon.ico",
   },
