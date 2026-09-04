@@ -5,7 +5,17 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { FaUser, FaEnvelope, FaLock, FaPhone, FaMapMarkerAlt, FaImage, FaUsers, FaCamera, FaHeart } from "react-icons/fa";
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaCamera,
+  FaHeart,
+  FaImage,
+} from "react-icons/fa";
 
 import { registerUser } from "@/src/services/authService";
 import { useUser } from "@/src/context/user.provider";
@@ -84,7 +94,7 @@ const RegisterPage = () => {
     <div className="min-h-screen bg-gray-950 flex">
       {/* Left Side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-blue-600/10 to-gray-950" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-gray-950" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
         <div className="relative z-10 flex flex-col justify-center px-16">
@@ -105,7 +115,8 @@ const RegisterPage = () => {
             </span>
           </h1>
           <p className="text-gray-400 text-lg mb-12 max-w-md">
-            Join millions of people sharing their stories, ideas, and moments. Connect with friends and discover new content.
+            Join millions of people sharing their stories, ideas, and moments.
+            Connect with friends and discover new content.
           </p>
 
           {/* Features */}
@@ -126,7 +137,7 @@ const RegisterPage = () => {
               <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
                 <FaHeart className="text-purple-400" size={18} />
               </div>
-              <span className="text-gray-300">Get advice from friends</span>
+              <span className="text-gray-300">Discover what&apos;s trending</span>
             </div>
           </div>
         </div>
@@ -145,7 +156,9 @@ const RegisterPage = () => {
 
           {/* Form Header */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-2">Create an account</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Create an account
+            </h2>
             <p className="text-gray-500">Join the conversation today</p>
           </div>
 
@@ -153,16 +166,22 @@ const RegisterPage = () => {
           <div className="space-y-4">
             {/* Name */}
             <div className="relative">
-              <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaUser
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                size={16}
+              />
               <Input
                 name="name"
                 type="text"
                 placeholder="Full name *"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 className="pl-12"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  inputWrapper:
+                    "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
                   input: "text-white placeholder-gray-500",
                 }}
               />
@@ -170,16 +189,22 @@ const RegisterPage = () => {
 
             {/* Email */}
             <div className="relative">
-              <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaEnvelope
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                size={16}
+              />
               <Input
                 name="email"
                 type="email"
                 placeholder="Email address *"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 className="pl-12"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  inputWrapper:
+                    "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
                   input: "text-white placeholder-gray-500",
                 }}
               />
@@ -187,16 +212,22 @@ const RegisterPage = () => {
 
             {/* Password */}
             <div className="relative">
-              <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaLock
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                size={16}
+              />
               <Input
                 name="password"
                 type="password"
                 placeholder="Password (min. 6 characters) *"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 className="pl-12"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  inputWrapper:
+                    "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
                   input: "text-white placeholder-gray-500",
                 }}
               />
@@ -204,16 +235,22 @@ const RegisterPage = () => {
 
             {/* Phone */}
             <div className="relative">
-              <FaPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaPhone
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                size={16}
+              />
               <Input
                 name="phone"
                 type="tel"
                 placeholder="Phone number"
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
                 className="pl-12"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  inputWrapper:
+                    "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
                   input: "text-white placeholder-gray-500",
                 }}
               />
@@ -221,16 +258,22 @@ const RegisterPage = () => {
 
             {/* Address */}
             <div className="relative">
-              <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaMapMarkerAlt
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                size={16}
+              />
               <Input
                 name="address"
                 type="text"
                 placeholder="Address"
                 value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, address: e.target.value })
+                }
                 className="pl-12"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
+                  inputWrapper:
+                    "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
                   input: "text-white placeholder-gray-500",
                 }}
               />
@@ -238,7 +281,10 @@ const RegisterPage = () => {
 
             {/* Profile Image */}
             <div className="relative">
-              <FaImage className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaImage
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+                size={16}
+              />
               <input
                 name="profileImage"
                 type="file"
@@ -249,20 +295,23 @@ const RegisterPage = () => {
               />
               <label
                 htmlFor="profileImage"
-                className="flex items-center gap-3 w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-xl text-gray-500 hover:border-gray-700 cursor-pointer transition-colors"
+                className="flex items-center gap-3 w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-xl text-gray-500 hover:border-gray-700 cursor-pointer transition-colors h-[48px]"
               >
                 {selectedImage ? (
-                  <span className="text-gray-300 truncate">{selectedImage.name}</span>
+                  <span className="text-gray-300 truncate">
+                    {selectedImage.name}
+                  </span>
                 ) : (
                   <span>Choose profile image (optional)</span>
                 )}
               </label>
             </div>
 
+            {/* Register Button */}
             <Button
               fullWidth
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold mt-6"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold mt-2"
               isLoading={isLoading}
               onClick={handleRegister}
               disabled={isLoading}
