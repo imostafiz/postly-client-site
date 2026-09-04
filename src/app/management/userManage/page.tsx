@@ -23,9 +23,9 @@ const UserManage = () => {
   };
 
   return (
-    <div className='p-6 text-gray-400 b'>
+    <div className='p-6 text-[#1C2430]/60 b'>
       <h2 className='text-2xl font-semibold mb-4'>User Management</h2>
-      <table className='min-w-full bg-gray-900 shadow-md rounded-lg overflow-hidden'>
+      <table className='min-w-full bg-white shadow-md rounded-lg overflow-hidden'>
         <thead className=''>
           <tr>
             <th className='py-2 px-4 text-left'>Image</th>

@@ -12,7 +12,7 @@ const PostManagement = () => {
 
   return (
     <div>
-      <h1 className="text-gray-700 font-bold">All Post Only for Admin</h1>
+      <h1 className="text-[#1C2430]/30 font-bold">All Post Only for Admin</h1>
       <Divider />
       <div>
         {posts?.map((singlePost: IPost) => (

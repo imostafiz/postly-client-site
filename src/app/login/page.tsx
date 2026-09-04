@@ -79,34 +79,34 @@ const LoginPage = () => {
   }, [isSuccess, isError, redirect, router]);
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-gray-800/50">
+    <div className="min-h-screen bg-[#F2F1EB] flex items-center justify-center p-4">
+      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-[#C9C4B]/50">
         {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-[45%] relative bg-gradient-to-br from-gray-900 to-gray-950 p-12 flex-col justify-between">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
+        <div className="hidden lg:flex lg:w-[45%] relative bg-[#1C2430] p-12 flex-col justify-between">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-2.5 mb-16">
-              <Logo className="text-white" size={40} />
-              <span className="text-xl font-semibold text-white">Postly</span>
+              <Logo className="text-[#1C2430]" size={40} />
+              <span className="text-xl font-semibold text-[#1C2430]">Postly</span>
             </div>
 
-            <h1 className="text-[40px] font-bold text-white leading-[1.15] mb-4">
+            <h1 className="text-[40px] font-bold text-[#1C2430] leading-[1.15] mb-4">
               Welcome
               <br />
               back.
             </h1>
-            <p className="text-gray-400 text-base leading-relaxed max-w-sm">
+            <p className="text-[#1C2430]/60 text-base leading-relaxed max-w-sm">
               Sign in to continue to your feed, messages, and notifications.
             </p>
           </div>
 
-          <div className="relative z-10 flex items-center gap-3 text-sm text-gray-500">
+          <div className="relative z-10 flex items-center gap-3 text-sm text-[#1C2430]/50">
             <div className="flex -space-x-2">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="w-8 h-8 rounded-full border-2 border-gray-900 bg-gray-700 flex items-center justify-center text-xs text-gray-400"
+                  className="w-8 h-8 rounded-full border-2 border-[#C9C4B] bg-gray-700 flex items-center justify-center text-xs text-[#1C2430]/60"
                 >
                   {i}
                 </div>
@@ -117,18 +117,18 @@ const LoginPage = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
+        <div className="w-full lg:w-[55%] bg-[#F2F1EB] p-8 sm:p-12">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
-            <Logo className="text-white" size={32} />
-            <span className="text-lg font-semibold text-white">Postly</span>
+            <Logo className="text-[#1C2430]" size={32} />
+            <span className="text-lg font-semibold text-[#1C2430]">Postly</span>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-1.5">
+            <h2 className="text-2xl font-bold text-[#1C2430] mb-1.5">
               Sign in to your account
             </h2>
-            <p className="text-gray-500 text-sm">
+            <p className="text-[#1C2430]/50 text-sm">
               Enter your credentials to continue
             </p>
           </div>
@@ -137,7 +137,7 @@ const LoginPage = () => {
           <div className="space-y-3.5">
             <div className="relative">
               <FaEnvelope
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -149,15 +149,15 @@ const LoginPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                    "bg-white/90 border border-[#C9C4B] hover:border-[#C9C4B] focus-within:border-[#D98E04] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
 
             <div className="relative">
               <FaLock
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -169,8 +169,8 @@ const LoginPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                    "bg-white/90 border border-[#C9C4B] hover:border-[#C9C4B] focus-within:border-[#D98E04] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
@@ -179,7 +179,7 @@ const LoginPage = () => {
           <div className="flex justify-end mt-3">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              className="text-xs text-[#1C2430]/50 hover:text-[#1C2430]/80 transition-colors"
             >
               Forgot password?
             </button>
@@ -189,7 +189,7 @@ const LoginPage = () => {
           <Button
             fullWidth
             size="lg"
-            className="mt-6 bg-white text-gray-950 font-semibold text-sm hover:bg-gray-100 transition-colors"
+            className="mt-6 bg-[#C9C4B]/30 text-[#1C2430] font-semibold text-sm hover:bg-[#C9C4B]/40 transition-colors"
             isLoading={isPending}
             onClick={handleLogin}
           >
@@ -198,17 +198,17 @@ const LoginPage = () => {
 
           {/* Divider */}
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-gray-800/80" />
-            <span className="px-3 text-xs text-gray-600">or</span>
-            <div className="flex-1 border-t border-gray-800/80" />
+            <div className="flex-1 border-t border-[#C9C4B]/80" />
+            <span className="px-3 text-xs text-[#1C2430]/40">or</span>
+            <div className="flex-1 border-t border-[#C9C4B]/80" />
           </div>
 
           {/* Register */}
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-[#1C2430]/50">
             Don&apos;t have an account?{" "}
             <Link
               href="/register"
-              className="text-white font-medium hover:underline underline-offset-4"
+              className="text-[#1C2430] font-medium hover:underline underline-offset-4"
             >
               Create one
             </Link>
@@ -220,29 +220,29 @@ const LoginPage = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#1C2430]/60 backdrop-blur-sm"
             onClick={() => setIsModalOpen(false)}
           />
-          <div className="relative bg-gray-900 border border-gray-800 rounded-2xl p-8 w-full max-w-md shadow-2xl">
+          <div className="relative bg-white border border-[#C9C4B] rounded-2xl p-8 w-full max-w-md shadow-2xl">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-[#1C2430]/50 hover:text-[#1C2430] transition-colors"
             >
               <IoMdClose size={20} />
             </button>
 
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-white mb-1.5">
+              <h2 className="text-lg font-bold text-[#1C2430] mb-1.5">
                 Reset your password
               </h2>
-              <p className="text-gray-500 text-sm">
+              <p className="text-[#1C2430]/50 text-sm">
                 Enter your email and we&apos;ll send you a reset link.
               </p>
             </div>
 
             <div className="relative mb-5">
               <FaEnvelope
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -253,8 +253,8 @@ const LoginPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                    "bg-white/90 border border-[#C9C4B] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
@@ -263,14 +263,14 @@ const LoginPage = () => {
               <Button
                 fullWidth
                 variant="flat"
-                className="bg-gray-800 text-gray-300 font-medium text-sm h-11"
+                className="bg-[#C9C4B]/30 text-[#1C2430]/80 font-medium text-sm h-11"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
               </Button>
               <Button
                 fullWidth
-                className="bg-white text-gray-950 font-semibold text-sm h-11"
+                className="bg-[#C9C4B]/30 text-[#1C2430] font-semibold text-sm h-11"
                 onClick={handleForgotPassword}
               >
                 Send link
@@ -286,8 +286,8 @@ const LoginPage = () => {
 const WrappedLoginPage = () => (
   <Suspense
     fallback={
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-gray-700 border-t-white rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#F2F1EB] flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-[#C9C4B]/60 border-t-[#D98E04] rounded-full animate-spin" />
       </div>
     }
   >

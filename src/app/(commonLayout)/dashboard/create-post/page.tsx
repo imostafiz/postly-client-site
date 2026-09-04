@@ -85,19 +85,19 @@ const CreatePost = () => {
   return (
     <div className="max-w-[680px] mx-auto">
       <div className="mb-6">
-        <h1 className="text-lg font-semibold text-white">Create post</h1>
-        <p className="text-sm text-gray-500">Share something with your followers</p>
+        <h1 className="text-lg font-semibold text-[#1C2430]">Create post</h1>
+        <p className="text-sm text-[#1C2430]/50">Share something with your followers</p>
       </div>
 
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+      <div className="bg-white/80 border border-[#C9C4B] rounded-2xl p-5 space-y-4">
         <Input
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          startContent={<FaPen className="text-gray-600" size={14} />}
+          startContent={<FaPen className="text-[#1C2430]/40" size={14} />}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
-            input: "text-white text-sm placeholder-gray-600",
+            inputWrapper: "bg-white border border-[#C9C4B] h-12",
+            input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
           }}
         />
 
@@ -106,8 +106,8 @@ const CreatePost = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
-            input: "text-white text-sm placeholder-gray-600",
+            inputWrapper: "bg-white border border-[#C9C4B] h-12",
+            input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
           }}
         />
 
@@ -117,8 +117,8 @@ const CreatePost = () => {
           onChange={(e) => setContent(e.target.value)}
           minRows={4}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800",
-            input: "text-white text-sm placeholder-gray-600",
+            inputWrapper: "bg-white border border-[#C9C4B]",
+            input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
           }}
         />
 
@@ -130,11 +130,11 @@ const CreatePost = () => {
                 <img
                   src={preview}
                   alt=""
-                  className="w-20 h-20 rounded-lg object-cover border border-gray-800"
+                  className="w-20 h-20 rounded-lg object-cover border border-[#C9C4B]"
                 />
                 <button
                   onClick={() => removeImage(index)}
-                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gray-800 border border-gray-700 rounded-full text-xs text-gray-400 hover:text-white hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#C9C4B]/30 border border-[#C9C4B]/60 rounded-full text-xs text-[#1C2430]/60 hover:text-[#1C2430] hover:bg-[#C9C4B]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   &times;
                 </button>
@@ -144,8 +144,8 @@ const CreatePost = () => {
         )}
 
         {/* Actions */}
-        <div className="flex items-center justify-between pt-2 border-t border-gray-800">
-          <label className="flex items-center gap-2 px-4 py-2 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white cursor-pointer transition-colors text-sm">
+        <div className="flex items-center justify-between pt-2 border-t border-[#C9C4B]">
+          <label className="flex items-center gap-2 px-4 py-2 rounded-xl text-[#1C2430]/60 hover:bg-[#C9C4B]/40 hover:text-[#1C2430] cursor-pointer transition-colors text-sm">
             <FaImage size={16} />
             <span>Photo</span>
             <input

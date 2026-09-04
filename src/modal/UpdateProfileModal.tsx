@@ -75,13 +75,13 @@ const UpdateProfileModal = ({
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-white border border-[#C9C4B]",
+        header: "border-b border-[#C9C4B]",
+        footer: "border-t border-[#C9C4B]",
       }}
     >
       <ModalContent>
-        <ModalHeader className="text-white font-semibold">
+        <ModalHeader className="text-[#1C2430] font-semibold">
           Edit profile
         </ModalHeader>
         <ModalBody className="py-4">
@@ -96,7 +96,7 @@ const UpdateProfileModal = ({
           <div className="space-y-3">
             <div className="relative">
               <FaUser
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -105,15 +105,15 @@ const UpdateProfileModal = ({
                 onChange={(e) => setName(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                  inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
 
             <div className="relative">
               <FaEnvelope
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -122,15 +122,15 @@ const UpdateProfileModal = ({
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                  inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
 
             <div className="relative">
               <FaPhone
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -139,15 +139,15 @@ const UpdateProfileModal = ({
                 onChange={(e) => setPhone(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                  inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
 
             <div className="relative">
               <FaMapMarkerAlt
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
                 size={15}
               />
               <Input
@@ -156,8 +156,8 @@ const UpdateProfileModal = ({
                 onChange={(e) => setAddress(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
-                  input: "text-white text-sm placeholder-gray-600",
+                  inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
+                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
                 }}
               />
             </div>
@@ -165,13 +165,13 @@ const UpdateProfileModal = ({
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#C9C4B]/30 text-[#1C2430]/60 font-medium text-sm"
             onClick={onClose}
           >
             Cancel
           </Button>
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm"
+            className="bg-[#D98E04] text-white font-semibold text-sm"
             isLoading={isLoading}
             onClick={handleUserUpdate}
             disabled={isLoading}

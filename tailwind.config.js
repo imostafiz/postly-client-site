@@ -15,6 +15,13 @@ module.exports = {
         title:["Qwitcher Grypen"],
         title2:["Yellowtail, cursive"]
       },
+      colors: {
+        paper: '#F2F1EB',
+        ink: '#1C2430',
+        mustard: '#D98E04',
+        field: '#3F6B4F',
+        hairline: '#C9C4B',
+      },
     },
  
   },

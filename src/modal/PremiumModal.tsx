@@ -58,9 +58,9 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-white border border-[#C9C4B]",
+        header: "border-b border-[#C9C4B]",
+        footer: "border-t border-[#C9C4B]",
       }}
     >
       <ModalContent>
@@ -69,10 +69,10 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
             <div className="w-14 h-14 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-yellow-500/25">
               <FaCrown className="text-white" size={24} />
             </div>
-            <h3 className="text-white font-semibold text-lg mb-1">
+            <h3 className="text-[#1C2430] font-semibold text-lg mb-1">
               Upgrade to Premium
             </h3>
-            <p className="text-gray-500 text-sm mb-4">
+            <p className="text-[#1C2430]/50 text-sm mb-4">
               Unlock exclusive features
             </p>
 
@@ -80,24 +80,24 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 bg-gray-950/50 border border-gray-800 rounded-xl px-4 py-3"
+                  className="flex items-center gap-3 bg-white/60 border border-[#C9C4B] rounded-xl px-4 py-3"
                 >
                   <feature.icon className={feature.color} size={16} />
-                  <span className="text-gray-300 text-sm">{feature.text}</span>
+                  <span className="text-[#1C2430]/80 text-sm">{feature.text}</span>
                 </div>
               ))}
             </div>
 
             <div className="flex items-baseline gap-1 mb-1">
-              <span className="text-3xl font-bold text-white">Tk 50</span>
-              <span className="text-gray-500 text-sm">/ lifetime</span>
+              <span className="text-3xl font-bold text-[#1C2430]">Tk 50</span>
+              <span className="text-[#1C2430]/50 text-sm">/ lifetime</span>
             </div>
-            <p className="text-gray-600 text-xs">One-time payment, no recurring fees</p>
+            <p className="text-[#1C2430]/40 text-xs">One-time payment, no recurring fees</p>
           </div>
         </ModalBody>
         <ModalFooter className="gap-2 justify-center">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#C9C4B]/30 text-[#1C2430]/60 font-medium text-sm"
             onClick={onClose}
           >
             Maybe later

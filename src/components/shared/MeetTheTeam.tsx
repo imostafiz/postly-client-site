@@ -22,7 +22,7 @@ const teamMembers = [
 
 const MeetTheTeam = () => {
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16 bg-[#1C2430]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#003580] mb-12 text-center animate__animated animate__fadeIn">
           Meet the Team
@@ -31,7 +31,7 @@ const MeetTheTeam = () => {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-black p-6 rounded-lg shadow-lg text-center animate__animated animate__fadeIn animate__delay-1s"
+              className="bg-[#1C2430] p-6 rounded-lg shadow-lg text-center animate__animated animate__fadeIn animate__delay-1s"
             >
               <img
                 alt={member.name}
@@ -41,8 +41,8 @@ const MeetTheTeam = () => {
               <h3 className="text-xl font-semibold text-[#003580] mb-2">
                 {member.name}
               </h3>
-              <p className="text-sm text-gray-600 mb-4">{member.role}</p>
-              <p className="text-gray-700">{member.bio}</p>
+              <p className="text-sm text-[#1C2430]/40 mb-4">{member.role}</p>
+              <p className="text-[#1C2430]/30">{member.bio}</p>
             </div>
           ))}
         </div>

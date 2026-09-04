@@ -32,36 +32,36 @@ const ContactUs = () => {
   return (
     <div className="max-w-[680px] mx-auto">
       <div className="mb-6">
-        <h1 className="text-lg font-semibold text-white">Contact us</h1>
-        <p className="text-sm text-gray-500">Have a question or feedback? Let us know.</p>
+        <h1 className="text-lg font-semibold text-[#1C2430]">Contact us</h1>
+        <p className="text-sm text-[#1C2430]/50">Have a question or feedback? Let us know.</p>
       </div>
 
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+      <div className="bg-white/80 border border-[#C9C4B] rounded-2xl p-5 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="relative">
-            <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+            <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40" size={15} />
             <Input
               placeholder="Name *"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="pl-11"
               classNames={{
-                inputWrapper: "bg-gray-900 border border-gray-800 h-12",
-                input: "text-white text-sm placeholder-gray-600",
+                inputWrapper: "bg-white border border-[#C9C4B] h-12",
+                input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
               }}
             />
           </div>
 
           <div className="relative">
-            <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+            <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40" size={15} />
             <Input
               placeholder="Email *"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="pl-11"
               classNames={{
-                inputWrapper: "bg-gray-900 border border-gray-800 h-12",
-                input: "text-white text-sm placeholder-gray-600",
+                inputWrapper: "bg-white border border-[#C9C4B] h-12",
+                input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
               }}
             />
           </div>
@@ -72,8 +72,8 @@ const ContactUs = () => {
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
-            input: "text-white text-sm placeholder-gray-600",
+            inputWrapper: "bg-white border border-[#C9C4B] h-12",
+            input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
           }}
         />
 
@@ -83,8 +83,8 @@ const ContactUs = () => {
           onChange={(e) => setMessage(e.target.value)}
           minRows={4}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800",
-            input: "text-white text-sm placeholder-gray-600",
+            inputWrapper: "bg-white border border-[#C9C4B]",
+            input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
           }}
         />
 

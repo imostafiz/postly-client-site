@@ -44,10 +44,10 @@ const NavItem = ({ href, icon, label, onClick, isActive, badge }: NavItemProps) 
       className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${
         isActive
           ? "bg-gradient-to-r from-blue-600/20 to-blue-500/10 text-blue-400 border border-blue-500/30"
-          : "text-gray-400 hover:bg-white/5 hover:text-white"
+          : "text-[#1C2430]/60 hover:bg-[#C9C4B]/40 hover:text-[#1C2430]"
       }`}
     >
-      <span className={`text-lg ${isActive ? "text-blue-400" : "text-gray-500 group-hover:text-blue-400"}`}>
+      <span className={`text-lg ${isActive ? "text-blue-400" : "text-[#1C2430]/50 group-hover:text-blue-400"}`}>
         {icon}
       </span>
       <span className="font-medium">{label}</span>
@@ -112,16 +112,16 @@ const LeftSidebar = () => {
     <>
       {/* Mobile toggle button */}
       <button
-        className="lg:hidden fixed top-4 left-4 lg:left-6 z-50 p-2.5 bg-gray-900 border border-gray-700 rounded-xl hover:bg-gray-800 transition-colors"
+        className="lg:hidden fixed top-4 left-4 lg:left-6 z-50 p-2.5 bg-white border border-[#C9C4B]/60 rounded-xl hover:bg-[#C9C4B]/40 transition-colors"
         onClick={toggleSidebar}
       >
-        {isOpen ? <IoMdClose className="text-white" size={20} /> : <FaBars className="text-white" size={20} />}
+        {isOpen ? <IoMdClose className="text-[#1C2430]" size={20} /> : <FaBars className="text-[#1C2430]" size={20} />}
       </button>
 
       {/* Mobile overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-[#1C2430]/50 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -129,18 +129,18 @@ const LeftSidebar = () => {
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
-        className={`fixed inset-y-0 left-4 lg:left-6 z-50 w-[280px] bg-gray-950 border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-4 lg:left-6 z-50 w-[280px] bg-white border-r border-[#C9C4B] transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="px-6 py-6 border-b border-gray-800/50">
+          <div className="px-6 py-6 border-b border-[#C9C4B]/50">
             <Link href="/dashboard" className="flex items-center gap-3">
-              <Logo className="text-white" size={36} />
+              <Logo className="text-[#1C2430]" size={36} />
               <div>
-                <h1 className="text-xl font-bold text-white tracking-tight">Postly</h1>
-                <p className="text-xs text-gray-500">Social Platform</p>
+                <h1 className="text-xl font-bold text-[#1C2430] tracking-tight">Postly</h1>
+                <p className="text-xs text-[#1C2430]/50">Social Platform</p>
               </div>
             </Link>
           </div>
@@ -157,7 +157,7 @@ const LeftSidebar = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-sm font-semibold text-yellow-400">Upgrade to Premium</p>
-                  <p className="text-xs text-gray-500">Unlock exclusive features</p>
+                  <p className="text-xs text-[#1C2430]/50">Unlock exclusive features</p>
                 </div>
               </button>
             </div>
@@ -165,7 +165,7 @@ const LeftSidebar = () => {
 
           {/* Main Navigation */}
           <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-            <p className="px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">Menu</p>
+            <p className="px-4 text-xs font-semibold text-[#1C2430]/40 uppercase tracking-wider mb-3">Menu</p>
             <NavItem
               href="/dashboard"
               icon={<FaHome size={18} />}
@@ -193,7 +193,7 @@ const LeftSidebar = () => {
             {user?.isPremium === true && (
               <>
                 <div className="pt-4 pb-2">
-                  <p className="px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">Premium</p>
+                  <p className="px-4 text-xs font-semibold text-[#1C2430]/40 uppercase tracking-wider mb-3">Premium</p>
                 </div>
                 <NavItem
                   href="/contact"
@@ -205,7 +205,7 @@ const LeftSidebar = () => {
             )}
 
             <div className="pt-4 pb-2">
-              <p className="px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">More</p>
+              <p className="px-4 text-xs font-semibold text-[#1C2430]/40 uppercase tracking-wider mb-3">More</p>
             </div>
             <NavItem
               href="/about"
@@ -216,7 +216,7 @@ const LeftSidebar = () => {
           </nav>
 
           {/* Profile & Admin Section */}
-          <div className="px-4 py-4 border-t border-gray-800/50">
+          <div className="px-4 py-4 border-t border-[#C9C4B]/50">
             <NavItem
               href="/dashboard/profile"
               icon={
@@ -245,9 +245,9 @@ const LeftSidebar = () => {
             <div className="mt-3">
               <button
                 onClick={handleLogOut}
-                className="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-500 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200 group"
+                className="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-[#1C2430]/50 hover:bg-red-500/10 hover:text-red-600 transition-all duration-200 group"
               >
-                <FaSignOutAlt size={18} className="group-hover:text-red-400" />
+                <FaSignOutAlt size={18} className="group-hover:text-red-600" />
                 <span className="font-medium">Log out</span>
               </button>
             </div>
@@ -256,17 +256,17 @@ const LeftSidebar = () => {
       </aside>
 
       {/* Bottom Navigation for mobile */}
-      <nav className="fixed bottom-0 w-full bg-gray-950 border-t border-gray-800 py-2 px-4 flex justify-around items-center lg:hidden z-40">
-        <Link href="/dashboard" className={`p-3 rounded-xl transition-colors ${pathname === "/dashboard" ? "text-blue-400 bg-blue-500/10" : "text-gray-400 hover:text-white"}`}>
+      <nav className="fixed bottom-0 w-full bg-white border-t border-[#C9C4B] py-2 px-4 flex justify-around items-center lg:hidden z-40">
+        <Link href="/dashboard" className={`p-3 rounded-xl transition-colors ${pathname === "/dashboard" ? "text-blue-400 bg-blue-500/10" : "text-[#1C2430]/60 hover:text-[#1C2430]"}`}>
           <FaHome size={20} />
         </Link>
-        <button onClick={openModal} className="p-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+        <button onClick={openModal} className="p-3 rounded-xl text-[#1C2430]/60 hover:text-[#1C2430] hover:bg-[#C9C4B]/40 transition-colors">
           <FaPlus size={20} />
         </button>
-        <Link href="/dashboard/friend" className={`p-3 rounded-xl transition-colors ${pathname === "/dashboard/friend" ? "text-blue-400 bg-blue-500/10" : "text-gray-400 hover:text-white"}`}>
+        <Link href="/dashboard/friend" className={`p-3 rounded-xl transition-colors ${pathname === "/dashboard/friend" ? "text-blue-400 bg-blue-500/10" : "text-[#1C2430]/60 hover:text-[#1C2430]"}`}>
           <FaUserFriends size={20} />
         </Link>
-        <Link href="/dashboard/favorite" className={`p-3 rounded-xl transition-colors ${pathname === "/dashboard/favorite" ? "text-blue-400 bg-blue-500/10" : "text-gray-400 hover:text-white"}`}>
+        <Link href="/dashboard/favorite" className={`p-3 rounded-xl transition-colors ${pathname === "/dashboard/favorite" ? "text-blue-400 bg-blue-500/10" : "text-[#1C2430]/60 hover:text-[#1C2430]"}`}>
           <FaHeart size={20} />
         </Link>
         <Link href="/dashboard/profile" className={`p-1 rounded-xl transition-colors ${pathname === "/dashboard/profile" ? "ring-2 ring-blue-500" : ""}`}>

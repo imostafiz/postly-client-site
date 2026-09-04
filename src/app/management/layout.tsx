@@ -34,7 +34,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
     <div className='flex min-h-screen relative'>
       {/* Toggle Button for Mobile Devices */}
       <button
-        className='lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-full'
+        className='lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#C9C4B]/30 text-[#1C2430] rounded-full'
         onClick={toggleSidebar}
       >
         <FaBars size={24} />
@@ -42,20 +42,20 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 p-4 bg-black text-white border-r border-gray-800 transform ${
+        className={`fixed inset-y-0 left-0 p-4 bg-[#1C2430] text-[#1C2430] border-r border-[#C9C4B] transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 w-64 z-40`}
       >
         {/* Sidebar upper section */}
         <ul className='space-y-4 mt-10'>
           <li className=''>
-            <p className='text-3xl font-bold  font-title2 text-white'>
+            <p className='text-3xl font-bold  font-title2 text-[#1C2430]'>
               Find Me
             </p>
           </li>
           <li>
             <Link href='/management/userManage'>
-              <button className='flex items-center space-x-2 py-2 hover:text-gray-400 w-full text-left'>
+              <button className='flex items-center space-x-2 py-2 hover:text-[#1C2430]/60 w-full text-left'>
                 <FaUser size={20} />
                 <span>User Management</span>
               </button>
@@ -63,7 +63,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
           </li>
           <li>
             <Link href='/management/postManage'>
-              <button className='flex items-center space-x-2 py-2 hover:text-gray-400 w-full text-left'>
+              <button className='flex items-center space-x-2 py-2 hover:text-[#1C2430]/60 w-full text-left'>
                 <FaEdit size={20} />
                 <span>Post Management</span>
               </button>
@@ -71,7 +71,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
           </li>
           <li>
             <Link href='/management/analysis'>
-              <button className='flex items-center space-x-2 py-2 hover:text-gray-400 w-full text-left'>
+              <button className='flex items-center space-x-2 py-2 hover:text-[#1C2430]/60 w-full text-left'>
                 <FaChartBar size={20} />
                 <span>Analysis</span>
               </button>
@@ -83,7 +83,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
         <div className='absolute bottom-4 w-full'>
           <li>
             <Link href='/dashboard'>
-              <button className='flex items-center space-x-4 hover:text-gray-400 w-full text-left px-2'>
+              <button className='flex items-center space-x-4 hover:text-[#1C2430]/60 w-full text-left px-2'>
                 <FaHome size={20} />
                 <span>Home</span>
               </button>
@@ -91,7 +91,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
           </li>
           <li>
             <button
-              className='flex items-center space-x-4 hover:text-blue-600 w-full text-left px-2'
+              className='flex items-center space-x-4 hover:text-[#D98E04] w-full text-left px-2'
               onClick={handleLogOut}
             >
               <FaSignOutAlt size={20} />
@@ -104,7 +104,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
       {/* Overlay for mobile when sidebar is open */}
       {isOpen && (
         <div
-          className='fixed inset-0 bg-black opacity-50 z-30 lg:hidden'
+          className='fixed inset-0 bg-[#1C2430] opacity-50 z-30 lg:hidden'
           role='button'
           tabIndex={0} // Ensure keyboard accessibility
           onClick={toggleSidebar}

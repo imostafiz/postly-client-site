@@ -43,13 +43,13 @@ const UpdateCommentModal: React.FC<UpdateCommentModalProps> = ({
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-white border border-[#C9C4B]",
+        header: "border-b border-[#C9C4B]",
+        footer: "border-t border-[#C9C4B]",
       }}
     >
       <ModalContent>
-        <ModalHeader className="text-white font-semibold">
+        <ModalHeader className="text-[#1C2430] font-semibold">
           Edit comment
         </ModalHeader>
         <ModalBody className="py-4">
@@ -59,20 +59,20 @@ const UpdateCommentModal: React.FC<UpdateCommentModalProps> = ({
             onChange={(e) => setText(e.target.value)}
             minRows={3}
             classNames={{
-              inputWrapper: "bg-gray-950/50 border border-gray-800",
-              input: "text-white text-sm placeholder-gray-600",
+              inputWrapper: "bg-white/60 border border-[#C9C4B]",
+              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
             }}
           />
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#C9C4B]/30 text-[#1C2430]/60 font-medium text-sm"
             onClick={onClose}
           >
             Cancel
           </Button>
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm"
+            className="bg-[#D98E04] text-white font-semibold text-sm"
             onClick={handleSubmit}
           >
             Save

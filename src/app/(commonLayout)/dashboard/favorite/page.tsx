@@ -18,8 +18,8 @@ const FavoritePostPage = () => {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-2">
-        <FaHeart className="text-red-400" size={18} />
-        <h1 className="text-lg font-semibold text-white">Favorites</h1>
+        <FaHeart className="text-red-600" size={18} />
+        <h1 className="text-lg font-semibold text-[#1C2430]">Favorites</h1>
       </div>
 
       {posts?.length > 0 ? (
@@ -28,7 +28,7 @@ const FavoritePostPage = () => {
           return (
             <div
               key={item.id}
-              className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden"
+              className="bg-white/80 border border-[#C9C4B] rounded-2xl overflow-hidden"
             >
               {/* Post Header */}
               <div className="p-4">
@@ -45,16 +45,16 @@ const FavoritePostPage = () => {
                   <div>
                     <div className="flex items-center gap-1.5">
                       <Link
-                        className="text-sm font-semibold text-white hover:underline"
+                        className="text-sm font-semibold text-[#1C2430] hover:underline"
                         href={`/dashboard/user/${post?.userId?.id}`}
                       >
                         {post?.userId?.name}
                       </Link>
                       {post?.userId?.isPremium && (
-                        <MdVerified className="text-blue-500" size={14} />
+                        <MdVerified className="text-[#D98E04]" size={14} />
                       )}
                     </div>
-                    <p className="text-xs text-gray-500">{post?.category}</p>
+                    <p className="text-xs text-[#1C2430]/50">{post?.category}</p>
                   </div>
                 </div>
               </div>
@@ -72,11 +72,11 @@ const FavoritePostPage = () => {
 
               {/* Post Content */}
               <div className="p-4 space-y-2">
-                <h3 className="text-base font-bold text-white">{post?.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <h3 className="text-base font-bold text-[#1C2430]">{post?.title}</h3>
+                <p className="text-[#1C2430]/60 text-sm leading-relaxed">
                   {post?.content}
                 </p>
-                <div className="flex items-center gap-3 text-xs text-gray-500 pt-1">
+                <div className="flex items-center gap-3 text-xs text-[#1C2430]/50 pt-1">
                   <span>{post?.likes?.length || 0} likes</span>
                   <span>{post?.comments?.length || 0} comments</span>
                 </div>
@@ -86,9 +86,9 @@ const FavoritePostPage = () => {
         })
       ) : (
         <div className="text-center py-16">
-          <FaHeart className="mx-auto text-gray-700 mb-4" size={40} />
-          <p className="text-gray-500">No favorite posts yet</p>
-          <p className="text-gray-600 text-sm mt-1">
+          <FaHeart className="mx-auto text-[#1C2430]/30 mb-4" size={40} />
+          <p className="text-[#1C2430]/50">No favorite posts yet</p>
+          <p className="text-[#1C2430]/40 text-sm mt-1">
             Posts you like will appear here
           </p>
         </div>

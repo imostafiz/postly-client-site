@@ -15,7 +15,7 @@ export const Logo: React.FC<IconSvgProps> = ({
     width={size || width}
     {...props}
   >
-    <rect width="32" height="32" rx="8" fill="currentColor" />
+    <rect width="32" height="32" rx="8" fill="#1C2430" />
     <path
       d="M10 9h6.5c3.5 0 6 2.2 6 5.25 0 2.5-1.6 4.35-4 5.05V23h-2.5v-3.55c-3.2-.45-5.5-2.6-5.5-5.45 0-3.25 2.7-5 6.2-5H10V9zm3.5 2.7v3.3h-2.3c-2 0-3.2 1.05-3.2 2.65 0 1.75 1.3 2.85 3.3 2.85h2.2V11.7z"
       fill="white"

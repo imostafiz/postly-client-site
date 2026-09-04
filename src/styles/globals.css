@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-paper: #F2F1EB;
+  --color-ink: #1C2430;
+  --color-mustard: #D98E04;
+  --color-field: #3F6B4F;
+  --color-hairline: #C9C4B;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}

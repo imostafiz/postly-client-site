@@ -78,7 +78,7 @@ const AnalysisPage = () => {
   };
 
   return (
-    <div className="p-6 text-gray-700">
+    <div className="p-6 text-[#1C2430]/30">
       <h1 className="text-2xl font-semibold mb-6">Analysis Dashboard</h1>
 
       {/* User Analysis (Bar Chart) */}
