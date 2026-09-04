@@ -252,19 +252,6 @@ const LeftSidebar = () => {
               </button>
             </div>
           </div>
-
-          {/* User Info Card */}
-          <div className="px-4 pb-4">
-            <div className="px-4 py-3 bg-gray-900/50 rounded-xl border border-gray-800">
-              <div className="flex items-center gap-3">
-                <Avatar size="sm" src={user?.profileImage} />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">{user?.name}</p>
-                  <p className="text-xs text-gray-500 truncate">{user?.email}</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </aside>
 
