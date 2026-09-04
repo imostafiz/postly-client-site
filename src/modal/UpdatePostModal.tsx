@@ -9,7 +9,9 @@ import {
   ModalFooter,
   Button,
   Input,
+  Textarea,
 } from "@nextui-org/react";
+import { FaPen, FaTag } from "react-icons/fa";
 
 import { IPost } from "@/src/types";
 
@@ -26,57 +28,76 @@ export default function UpdatePostModal({
   post,
   onUpdate,
 }: UpdatePostModalProps) {
-  // Keep a local state for the updated post details
-  const [updatedPost, setUpdatedPost] = useState<Partial<IPost>>({
-    title: post?.title,
-    category: post?.category,
-    content: post?.content,
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUpdatedPost((prev) => ({ ...prev, [name]: value })); // Only update the local state, not triggering the update yet
-  };
+  const [title, setTitle] = useState(post?.title || "");
+  const [category, setCategory] = useState(post?.category || "");
+  const [content, setContent] = useState(post?.content || "");
 
   const handleSubmit = () => {
-    onUpdate(updatedPost); // Trigger the update when the "Update" button is clicked
+    onUpdate({ title, category, content });
+    onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} placement="top-center" onOpenChange={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      placement="center"
+      classNames={{
+        base: "bg-gray-900 border border-gray-800",
+        header: "border-b border-gray-800",
+        footer: "border-t border-gray-800",
+      }}
+    >
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">Update Post</ModalHeader>
-        <ModalBody>
+        <ModalHeader className="text-white font-semibold">
+          Edit post
+        </ModalHeader>
+        <ModalBody className="gap-3 py-4">
           <Input
-            label="Title"
-            name="title"
-            placeholder="Enter the title"
-            value={updatedPost.title}
-            onChange={handleInputChange}
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            startContent={<FaPen className="text-gray-600" size={14} />}
+            classNames={{
+              inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
           />
+
           <Input
-            label="Category"
-            name="category"
-            placeholder="Enter the category"
-            value={updatedPost.category}
-            onChange={handleInputChange}
+            placeholder="Category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            startContent={<FaTag className="text-gray-600" size={14} />}
+            classNames={{
+              inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
           />
-          <Input
-            className="mt-4"
-            label="Content"
-            name="content"
-            placeholder="Enter the content"
-            value={updatedPost.content}
-            onChange={handleInputChange}
+
+          <Textarea
+            placeholder="Content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            minRows={4}
+            classNames={{
+              inputWrapper: "bg-gray-950/50 border border-gray-800",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
           />
         </ModalBody>
-        <ModalFooter>
-          <Button color="danger" size="sm" variant="flat" onPress={onClose}>
-            Close
+        <ModalFooter className="gap-2">
+          <Button
+            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            onClick={onClose}
+          >
+            Cancel
           </Button>
-          <Button color="primary" size="sm" onPress={handleSubmit}>
-            Update
+          <Button
+            className="bg-white text-gray-950 font-semibold text-sm"
+            onClick={handleSubmit}
+          >
+            Save
           </Button>
         </ModalFooter>
       </ModalContent>
