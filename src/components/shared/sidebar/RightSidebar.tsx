@@ -37,7 +37,7 @@ const RightSidebar = () => {
   };
 
   return (
-    <aside className="hidden lg:block fixed right-0 top-0 h-screen w-[320px] border-l border-gray-800 bg-gray-950 overflow-y-auto">
+    <aside className="hidden lg:block fixed right-4 lg:right-6 top-0 h-screen w-[320px] border-l border-gray-800 bg-gray-950 overflow-y-auto">
       <div className="p-6">
         {/* Search Header */}
         <div className="mb-6">

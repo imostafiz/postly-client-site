@@ -111,7 +111,7 @@ const LeftSidebar = () => {
     <>
       {/* Mobile toggle button */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 p-2.5 bg-gray-900 border border-gray-700 rounded-xl hover:bg-gray-800 transition-colors"
+        className="lg:hidden fixed top-4 left-4 lg:left-6 z-50 p-2.5 bg-gray-900 border border-gray-700 rounded-xl hover:bg-gray-800 transition-colors"
         onClick={toggleSidebar}
       >
         {isOpen ? <IoMdClose className="text-white" size={20} /> : <FaBars className="text-white" size={20} />}
@@ -128,7 +128,7 @@ const LeftSidebar = () => {
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
-        className={`fixed inset-y-0 left-0 z-50 w-[280px] bg-gray-950 border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-4 lg:left-6 z-50 w-[280px] bg-gray-950 border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
