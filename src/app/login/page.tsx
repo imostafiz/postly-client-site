@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useForgetPasswordMutation } from "@/src/redux/features/user";
 import { useUserLogin } from "@/src/hooks/auth.hooks";
 import { useUser } from "@/src/context/user.provider";
+import { Logo } from "@/src/components/icons";
 
 interface LoginDataType {
   email: string;
@@ -86,9 +87,7 @@ const LoginPage = () => {
 
           <div className="relative z-10">
             <div className="flex items-center gap-2.5 mb-16">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
-                <span className="text-gray-950 font-bold text-lg">P</span>
-              </div>
+              <Logo className="text-white" size={40} />
               <span className="text-xl font-semibold text-white">Postly</span>
             </div>
 
@@ -121,9 +120,7 @@ const LoginPage = () => {
         <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
-            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-gray-950 font-bold text-sm">P</span>
-            </div>
+            <Logo className="text-white" size={32} />
             <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 

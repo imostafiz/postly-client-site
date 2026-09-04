@@ -10,6 +10,7 @@ import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 
 import { registerUser } from "@/src/services/authService";
 import { useUser } from "@/src/context/user.provider";
+import { Logo } from "@/src/components/icons";
 
 const IMAGE_UPLOAD_LINK =
   "https://api.imgbb.com/1/upload?key=63e5e5d08878e2104d3082bebc10b603";
@@ -103,9 +104,7 @@ const RegisterPage = () => {
 
           <div className="relative z-10">
             <div className="flex items-center gap-2.5 mb-16">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
-                <span className="text-gray-950 font-bold text-lg">P</span>
-              </div>
+              <Logo className="text-white" size={40} />
               <span className="text-xl font-semibold text-white">Postly</span>
             </div>
 
@@ -139,9 +138,7 @@ const RegisterPage = () => {
         <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
-            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-gray-950 font-bold text-sm">P</span>
-            </div>
+            <Logo className="text-white" size={32} />
             <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 

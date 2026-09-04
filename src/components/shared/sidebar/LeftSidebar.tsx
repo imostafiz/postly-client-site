@@ -26,6 +26,7 @@ import CreatePostModal from "@/src/modal/CreatePostModal";
 import { useUser } from "@/src/context/user.provider";
 import PremiumModal from "@/src/modal/PremiumModal";
 import { useGetUser } from "@/src/hooks/auth.hooks";
+import { Logo } from "@/src/components/icons";
 
 interface NavItemProps {
   href?: string;
@@ -136,9 +137,7 @@ const LeftSidebar = () => {
           {/* Logo */}
           <div className="px-6 py-6 border-b border-gray-800/50">
             <Link href="/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">P</span>
-              </div>
+              <Logo className="text-white" size={36} />
               <div>
                 <h1 className="text-xl font-bold text-white tracking-tight">Postly</h1>
                 <p className="text-xs text-gray-500">Social Platform</p>
