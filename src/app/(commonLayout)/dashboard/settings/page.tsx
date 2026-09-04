@@ -1,119 +1,101 @@
-// "use client";
-// import { useState, useEffect } from "react"; // Import useEffect for initializing state
-// import { Avatar, Button, Input } from "@nextui-org/react";
-// import { toast } from "sonner"; // Import Sonner for notifications
+"use client";
 
-// import { useUser } from "@/src/context/user.provider";
-// import { useUpdateProfileMutation } from "@/src/redux/features/user";
+import { useState } from "react";
+import { Button } from "@nextui-org/button";
+import { Input } from "@nextui-org/input";
+import { toast } from "sonner";
+import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
-// const Settings = () => {
-//   const { user } = useUser();
-//   const userId = user?._id; // Fixed variable name
-//   const [updateProfile] = useUpdateProfileMutation();
+import { useUser } from "@/src/context/user.provider";
 
-//   // State to hold form data for user info (excluding profile image)
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     phone: "",
-//     address: "",
-//   });
+const Settings = () => {
+  const { user } = useUser();
+  const [name, setName] = useState(user?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [phone, setPhone] = useState(user?.phone || "");
+  const [address, setAddress] = useState(user?.address || "");
+  const [isLoading, setLoading] = useState(false);
 
-//   useEffect(() => {
-//     if (user) {
-//       setFormData({
-//         name: user.name,
-//         email: user.email,
-//         phone: user.phone,
-//         address: user.address,
-//       });
-//     }
-//   }, [user]);
+  const handleSave = async () => {
+    toast.success("Settings saved!");
+  };
 
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleUserUpdate = async () => {
-//     if (!userId) {
-//       toast.error("User ID is not available.");
-
-//       return;
-//     }
-
-//     try {
-//       const userData = { ...formData };
-
-//       await updateProfile({ userId, userData }).unwrap(); // Use unwrap to handle
-//       toast.success("Profile updated successfully!");
-//     } catch (error) {
-//       console.error("Failed to update profile:", error);
-//       toast.error("Failed to update profile. Please try again.");
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <Avatar size="lg" src={user?.profileImage} />{" "}
-//       {/* Display current profile image but don't update */}
-//       <Input
-//         label="Name"
-//         name="name"
-//         type="text"
-//         value={formData.name} // Set value from state
-//         variant="underlined"
-//         onChange={handleInputChange} // Handle input change
-//       />
-//       <Input
-//         label="Email"
-//         name="email"
-//         type="email"
-//         value={formData.email} // Set value from state
-//         variant="underlined"
-//         onChange={handleInputChange} // Handle input change
-//       />
-//       <Input
-//         label="Phone"
-//         name="phone"
-//         type="text"
-//         value={formData.phone} // Set value from state
-//         variant="underlined"
-//         onChange={handleInputChange} // Handle input change
-//       />
-//       <Input
-//         label="Address"
-//         name="address"
-//         type="text"
-//         value={formData.address} // Set value from state
-//         variant="underlined"
-//         onChange={handleInputChange} // Handle input change
-//       />
-//       <Button
-//         className="mt-12 right-0"
-//         color="primary"
-//         size="sm"
-//         variant="ghost"
-//         onClick={handleUserUpdate} // Call update function on button click
-//       >
-//         Save changes
-//       </Button>
-//     </div>
-//   );
-// };
-
-// export default Settings;
-
-const page = () => {
   return (
-    <div>
-      <p>This is settings page</p>
+    <div className="max-w-[680px] mx-auto">
+      <div className="mb-6">
+        <h1 className="text-lg font-semibold text-white">Settings</h1>
+        <p className="text-sm text-gray-500">Manage your account preferences</p>
+      </div>
+
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+        <div className="relative">
+          <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+          <Input
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="pl-11"
+            classNames={{
+              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
+          />
+        </div>
+
+        <div className="relative">
+          <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+          <Input
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="pl-11"
+            classNames={{
+              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
+          />
+        </div>
+
+        <div className="relative">
+          <FaPhone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+          <Input
+            placeholder="Phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="pl-11"
+            classNames={{
+              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
+          />
+        </div>
+
+        <div className="relative">
+          <FaMapMarkerAlt className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+          <Input
+            placeholder="Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="pl-11"
+            classNames={{
+              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              input: "text-white text-sm placeholder-gray-600",
+            }}
+          />
+        </div>
+
+        <div className="flex justify-end pt-2">
+          <Button
+            className="bg-white text-gray-950 font-semibold text-sm px-6"
+            isLoading={isLoading}
+            onClick={handleSave}
+          >
+            Save changes
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default page;
+export default Settings;

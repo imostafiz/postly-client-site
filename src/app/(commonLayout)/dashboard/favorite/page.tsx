@@ -1,5 +1,10 @@
 "use client";
 
+import { Avatar } from "@nextui-org/react";
+import Link from "next/link";
+import { MdVerified } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
+
 import { useGetUser } from "@/src/hooks/auth.hooks";
 import { useGetMyFavoritePostQuery } from "@/src/redux/features/post";
 
@@ -11,45 +16,82 @@ const FavoritePostPage = () => {
   const posts = postData?.data;
 
   return (
-    <div>
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 mb-2">
+        <FaHeart className="text-red-400" size={18} />
+        <h1 className="text-lg font-semibold text-white">Favorites</h1>
+      </div>
+
       {posts?.length > 0 ? (
-        // eslint-disable-next-line prettier/prettier
-        posts.map((post: any) => (
-          <div
-            key={post.id}
-            className='max-w-md mx-auto my-4 border  bg-black rounded-lg shadow-md overflow-hidden'
-          >
-            {/* Post Image */}
-            {post?.post?.image?.length > 0 && (
-              <img
-                alt={post?.post?.title}
-                className='w-full h-48 object-cover'
-                src={post.post.image[0]}
-              />
-            )}
-
-            {/* Post Title */}
-            <div className='p-4'>
-              <h2 className='text-xl font-semibold text-white'>
-                {post?.post?.title}
-              </h2>
-              <p className='text-gray-300'>{post?.post?.content}</p>
-
-              {/* Post Metadata */}
-              <div className='mt-4 flex justify-between items-center text-sm text-gray-200'>
-                <span>Category: {post?.post?.category}</span>
-                <span>Likes: {post?.post?.likes?.length}</span>
+        posts.map((item: any) => {
+          const post = item.post;
+          return (
+            <div
+              key={item.id}
+              className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden"
+            >
+              {/* Post Header */}
+              <div className="p-4">
+                <div className="flex items-center gap-3">
+                  <Link href={`/dashboard/user/${post?.userId?.id}`}>
+                    <Avatar
+                      isBordered
+                      radius="full"
+                      size="md"
+                      src={post?.userId?.profileImage}
+                      className="cursor-pointer"
+                    />
+                  </Link>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <Link
+                        className="text-sm font-semibold text-white hover:underline"
+                        href={`/dashboard/user/${post?.userId?.id}`}
+                      >
+                        {post?.userId?.name}
+                      </Link>
+                      {post?.userId?.isPremium && (
+                        <MdVerified className="text-blue-500" size={14} />
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-500">{post?.category}</p>
+                  </div>
+                </div>
               </div>
 
-              {/* Post Comments */}
-              <div className='mt-2 text-gray-200'>
-                <span>Comments: {post?.post?.comments?.length}</span>
+              {/* Post Image */}
+              {post?.image?.length > 0 && (
+                <div className="relative">
+                  <img
+                    alt={post?.title}
+                    className="w-full h-[300px] object-cover"
+                    src={post.image[0]}
+                  />
+                </div>
+              )}
+
+              {/* Post Content */}
+              <div className="p-4 space-y-2">
+                <h3 className="text-base font-bold text-white">{post?.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {post?.content}
+                </p>
+                <div className="flex items-center gap-3 text-xs text-gray-500 pt-1">
+                  <span>{post?.likes?.length || 0} likes</span>
+                  <span>{post?.comments?.length || 0} comments</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          );
+        })
       ) : (
-        <p>You have no favorite post.</p>
+        <div className="text-center py-16">
+          <FaHeart className="mx-auto text-gray-700 mb-4" size={40} />
+          <p className="text-gray-500">No favorite posts yet</p>
+          <p className="text-gray-600 text-sm mt-1">
+            Posts you like will appear here
+          </p>
+        </div>
       )}
     </div>
   );
