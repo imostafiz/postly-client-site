@@ -43,13 +43,13 @@ const UpdateCommentModal: React.FC<UpdateCommentModalProps> = ({
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-white border border-[#C9C4B]",
-        header: "border-b border-[#C9C4B]",
-        footer: "border-t border-[#C9C4B]",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
-        <ModalHeader className="text-[#1C2430] font-semibold">
+        <ModalHeader className="text-white font-semibold">
           Edit comment
         </ModalHeader>
         <ModalBody className="py-4">
@@ -59,14 +59,14 @@ const UpdateCommentModal: React.FC<UpdateCommentModalProps> = ({
             onChange={(e) => setText(e.target.value)}
             minRows={3}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B]",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A]",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-[#C9C4B]/30 text-[#1C2430]/60 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={onClose}
           >
             Cancel

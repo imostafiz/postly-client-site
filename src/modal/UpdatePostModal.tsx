@@ -43,13 +43,13 @@ export default function UpdatePostModal({
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-white border border-[#C9C4B]",
-        header: "border-b border-[#C9C4B]",
-        footer: "border-t border-[#C9C4B]",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
-        <ModalHeader className="text-[#1C2430] font-semibold">
+        <ModalHeader className="text-white font-semibold">
           Edit post
         </ModalHeader>
         <ModalBody className="gap-3 py-4">
@@ -57,10 +57,10 @@ export default function UpdatePostModal({
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            startContent={<FaPen className="text-[#1C2430]/40" size={14} />}
+            startContent={<FaPen className="text-gray-600" size={14} />}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
 
@@ -68,10 +68,10 @@ export default function UpdatePostModal({
             placeholder="Category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            startContent={<FaTag className="text-[#1C2430]/40" size={14} />}
+            startContent={<FaTag className="text-gray-600" size={14} />}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
 
@@ -81,14 +81,14 @@ export default function UpdatePostModal({
             onChange={(e) => setContent(e.target.value)}
             minRows={4}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B]",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A]",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-[#C9C4B]/30 text-[#1C2430]/60 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={onClose}
           >
             Cancel

@@ -37,12 +37,12 @@ const RightSidebar = () => {
   };
 
   return (
-    <aside className="hidden lg:block fixed right-4 lg:right-6 top-0 h-screen w-[320px] border-l border-[#C9C4B] bg-[#F2F1EB] overflow-y-auto">
+    <aside className="hidden lg:block fixed right-4 lg:right-6 top-0 h-screen w-[320px] border-l border-[#2A2A2A] bg-[#0A0A0A] overflow-y-auto">
       <div className="p-6">
         {/* Search Header */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-[#1C2430] mb-1">Suggested for you</h2>
-          <p className="text-sm text-[#1C2430]/50">People you may know</p>
+          <h2 className="text-lg font-semibold text-white mb-1">Suggested for you</h2>
+          <p className="text-sm text-gray-500">People you may know</p>
         </div>
 
         {/* User List */}
@@ -57,7 +57,7 @@ const RightSidebar = () => {
             users?.slice(0, 8).map((user: IUser) => (
               <div
                 key={user.id}
-                className="flex items-center justify-between p-3 rounded-xl bg-white/80 border border-[#C9C4B] hover:border-[#C9C4B]/60 transition-colors"
+                className="flex items-center justify-between p-3 rounded-xl bg-[#141414]/80 border border-[#2A2A2A] hover:border-[#2A2A2A]/60 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <Avatar
@@ -68,10 +68,10 @@ const RightSidebar = () => {
                     className="flex-shrink-0"
                   />
                   <div className="min-w-0">
-                    <h4 className="text-sm font-semibold text-[#1C2430] truncate">
+                    <h4 className="text-sm font-semibold text-white truncate">
                       {user.name}
                     </h4>
-                    <p className="text-xs text-[#1C2430]/50 truncate">
+                    <p className="text-xs text-gray-500 truncate">
                       {user.email}
                     </p>
                   </div>
@@ -85,7 +85,7 @@ const RightSidebar = () => {
                     color={isFollowing(user.id) ? "default" : "primary"}
                     className={`flex-shrink-0 ml-3 ${
                       isFollowing(user.id)
-                        ? "bg-[#C9C4B]/30 text-[#1C2430]/60"
+                        ? "bg-[#2A2A2A] text-gray-400"
                         : ""
                     }`}
                     onClick={() => handleFollowUser(user.id)}
@@ -108,7 +108,7 @@ const RightSidebar = () => {
 
         {/* Trending Section */}
         <div className="mt-8">
-          <h3 className="text-sm font-semibold text-[#1C2430]/50 uppercase tracking-wider mb-4">Trending Topics</h3>
+          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Trending Topics</h3>
           <div className="flex flex-wrap gap-2">
             {["Trending", "Music", "Sports", "Travel", "Food", "Fashion"].map((tag) => (
               <span
@@ -122,7 +122,7 @@ const RightSidebar = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-8 pt-6 border-t border-[#C9C4B]">
+        <div className="mt-8 pt-6 border-t border-[#2A2A2A]">
           <Footer />
         </div>
       </div>

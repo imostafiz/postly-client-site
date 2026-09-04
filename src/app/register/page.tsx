@@ -96,35 +96,35 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F2F1EB] flex items-center justify-center p-4">
-      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-[#C9C4B]/50">
+    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-[#2A2A2A]/50">
         {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-[45%] relative bg-[#1C2430] p-12 flex-col justify-between">
+        <div className="hidden lg:flex lg:w-[45%] relative bg-[#141414] p-12 flex-col justify-between">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-2.5 mb-16">
-              <Logo className="text-[#1C2430]" size={40} />
-              <span className="text-xl font-semibold text-[#1C2430]">Postly</span>
+              <Logo className="text-white" size={40} />
+              <span className="text-xl font-semibold text-white">Postly</span>
             </div>
 
-            <h1 className="text-[40px] font-bold text-[#1C2430] leading-[1.15] mb-4">
+            <h1 className="text-[40px] font-bold text-white leading-[1.15] mb-4">
               Share what
               <br />
               matters to you.
             </h1>
-            <p className="text-[#1C2430]/60 text-base leading-relaxed max-w-sm">
+            <p className="text-gray-400 text-base leading-relaxed max-w-sm">
               Create an account to start posting, connecting with others, and
               building your community.
             </p>
           </div>
 
-          <div className="relative z-10 flex items-center gap-3 text-sm text-[#1C2430]/50">
+          <div className="relative z-10 flex items-center gap-3 text-sm text-gray-500">
             <div className="flex -space-x-2">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="w-8 h-8 rounded-full border-2 border-[#C9C4B] bg-gray-700 flex items-center justify-center text-xs text-[#1C2430]/60"
+                  className="w-8 h-8 rounded-full border-2 border-[#2A2A2A] bg-gray-700 flex items-center justify-center text-xs text-gray-400"
                 >
                   {i}
                 </div>
@@ -135,18 +135,18 @@ const RegisterPage = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="w-full lg:w-[55%] bg-[#F2F1EB] p-8 sm:p-12">
+        <div className="w-full lg:w-[55%] bg-[#0A0A0A] p-8 sm:p-12">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
-            <Logo className="text-[#1C2430]" size={32} />
-            <span className="text-lg font-semibold text-[#1C2430]">Postly</span>
+            <Logo className="text-white" size={32} />
+            <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-[#1C2430] mb-1.5">
+            <h2 className="text-2xl font-bold text-white mb-1.5">
               Create your account
             </h2>
-            <p className="text-[#1C2430]/50 text-sm">
+            <p className="text-gray-500 text-sm">
               Fill in the details below to get started
             </p>
           </div>
@@ -166,20 +166,20 @@ const RegisterPage = () => {
                   <img
                     src={preview}
                     alt="Avatar"
-                    className="w-16 h-16 rounded-2xl object-cover border-2 border-[#C9C4B] group-hover:border-[#C9C4B] transition-colors"
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-[#2A2A2A] group-hover:border-[#2A2A2A] transition-colors"
                   />
                 ) : (
-                  <div className="w-16 h-16 rounded-2xl bg-white border-2 border-dashed border-[#C9C4B]/60 flex items-center justify-center group-hover:border-[#C9C4B] transition-colors">
-                    <FaImage className="text-[#1C2430]/40" size={20} />
+                  <div className="w-16 h-16 rounded-2xl bg-[#141414] border-2 border-dashed border-[#2A2A2A]/60 flex items-center justify-center group-hover:border-[#2A2A2A] transition-colors">
+                    <FaImage className="text-gray-600" size={20} />
                   </div>
                 )}
               </label>
             </div>
             <div>
-              <p className="text-sm font-medium text-[#1C2430]/80">
+              <p className="text-sm font-medium text-gray-300">
                 Profile photo
               </p>
-              <p className="text-xs text-[#1C2430]/40">Optional</p>
+              <p className="text-xs text-gray-600">Optional</p>
             </div>
           </div>
 
@@ -187,7 +187,7 @@ const RegisterPage = () => {
           <div className="space-y-3.5">
             <div className="relative">
               <FaUser
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
                 size={15}
               />
               <Input
@@ -198,15 +198,15 @@ const RegisterPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-white/90 border border-[#C9C4B] hover:border-[#C9C4B] focus-within:border-[#D98E04] h-12",
-                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
+                  input: "text-white text-sm placeholder-gray-600",
                 }}
               />
             </div>
 
             <div className="relative">
               <FaEnvelope
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
                 size={15}
               />
               <Input
@@ -217,15 +217,15 @@ const RegisterPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-white/90 border border-[#C9C4B] hover:border-[#C9C4B] focus-within:border-[#D98E04] h-12",
-                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
+                  input: "text-white text-sm placeholder-gray-600",
                 }}
               />
             </div>
 
             <div className="relative">
               <FaLock
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
                 size={15}
               />
               <Input
@@ -236,8 +236,8 @@ const RegisterPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-white/90 border border-[#C9C4B] hover:border-[#C9C4B] focus-within:border-[#D98E04] h-12",
-                  input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
+                  input: "text-white text-sm placeholder-gray-600",
                 }}
               />
             </div>
@@ -252,7 +252,7 @@ const RegisterPage = () => {
                 onChange={(e) => setAgreed(e.target.checked)}
                 className="peer sr-only"
               />
-              <div className="w-4 h-4 rounded border border-[#C9C4B]/60 bg-white peer-checked:bg-[#D98E04] peer-checked:border-[#D98E04] transition-colors flex items-center justify-center">
+              <div className="w-4 h-4 rounded border border-[#2A2A2A]/60 bg-[#141414] peer-checked:bg-[#D98E04] peer-checked:border-[#D98E04] transition-colors flex items-center justify-center">
                 {agreed && (
                   <svg
                     className="w-2.5 h-2.5 text-white"
@@ -270,13 +270,13 @@ const RegisterPage = () => {
                 )}
               </div>
             </div>
-            <span className="text-xs text-[#1C2430]/50 leading-relaxed">
+            <span className="text-xs text-gray-500 leading-relaxed">
               I agree to the{" "}
-              <span className="text-[#1C2430]/60 hover:text-[#1C2430]/80 cursor-pointer">
+              <span className="text-gray-400 hover:text-gray-300 cursor-pointer">
                 Terms of Service
               </span>{" "}
               and{" "}
-              <span className="text-[#1C2430]/60 hover:text-[#1C2430]/80 cursor-pointer">
+              <span className="text-gray-400 hover:text-gray-300 cursor-pointer">
                 Privacy Policy
               </span>
             </span>
@@ -286,7 +286,7 @@ const RegisterPage = () => {
           <Button
             fullWidth
             size="lg"
-            className="mt-6 bg-[#C9C4B]/30 text-[#1C2430] font-semibold text-sm hover:bg-[#C9C4B]/40 transition-colors"
+            className="mt-6 bg-[#2A2A2A] text-white font-semibold text-sm hover:bg-[#2A2A2A]/80 transition-colors"
             isLoading={isLoading}
             onClick={handleRegister}
             disabled={isLoading}
@@ -296,17 +296,17 @@ const RegisterPage = () => {
 
           {/* Divider */}
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-[#C9C4B]/80" />
-            <span className="px-3 text-xs text-[#1C2430]/40">or</span>
-            <div className="flex-1 border-t border-[#C9C4B]/80" />
+            <div className="flex-1 border-t border-[#2A2A2A]/80" />
+            <span className="px-3 text-xs text-gray-600">or</span>
+            <div className="flex-1 border-t border-[#2A2A2A]/80" />
           </div>
 
           {/* Login */}
-          <p className="text-center text-sm text-[#1C2430]/50">
+          <p className="text-center text-sm text-gray-500">
             Already have an account?{" "}
             <Link
               href="/login"
-              className="text-[#1C2430] font-medium hover:underline underline-offset-4"
+              className="text-white font-medium hover:underline underline-offset-4"
             >
               Sign in
             </Link>

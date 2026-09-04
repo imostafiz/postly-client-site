@@ -43,7 +43,7 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
   };
 
   return (
-    <div className="bg-white/80 border border-[#C9C4B]/30 rounded-2xl overflow-hidden">
+    <div className="bg-[#141414]/80 border border-[#2A2A2A]/60 rounded-2xl overflow-hidden">
       {/* Post Image */}
       {Array.isArray(singlePost?.image) && singlePost.image.length > 0 && (
         <div className="relative">
@@ -57,8 +57,8 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
 
       {/* Post Content */}
       <div className="p-4 space-y-3">
-        <h3 className="text-lg font-bold text-[#1C2430]">{singlePost?.title}</h3>
-        <p className="text-[#1C2430]/80 text-sm leading-relaxed">{singlePost?.content}</p>
+        <h3 className="text-lg font-bold text-white">{singlePost?.title}</h3>
+        <p className="text-gray-300 text-sm leading-relaxed">{singlePost?.content}</p>
         <div className="flex flex-wrap gap-2">
           <span className="px-2.5 py-1 text-xs font-medium text-[#D98E04] bg-[#D98E04]/10 rounded-full">
             #{singlePost?.category}
@@ -67,12 +67,12 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
       </div>
 
       {/* Action Buttons */}
-      <div className="px-4 py-3 border-t border-[#C9C4B] flex justify-end gap-2">
+      <div className="px-4 py-3 border-t border-[#2A2A2A] flex justify-end gap-2">
         <Button
           size="sm"
           radius="full"
           variant="flat"
-          className="bg-[#C9C4B]/30 text-[#1C2430]/80 hover:bg-[#D98E04]/20 hover:text-[#D98E04]"
+          className="bg-[#2A2A2A] text-gray-300 hover:bg-[#D98E04]/20 hover:text-[#D98E04]"
           startContent={<FaEdit size={14} />}
           onPress={() => setIsUpdateModalOpen(true)}
         >
@@ -82,7 +82,7 @@ const MyPostCard = ({ singlePost }: { singlePost: IPost }) => {
           size="sm"
           radius="full"
           variant="flat"
-          className="bg-[#C9C4B]/30 text-[#1C2430]/80 hover:bg-red-500/20 hover:text-red-600"
+          className="bg-[#2A2A2A] text-gray-300 hover:bg-red-500/20 hover:text-red-400"
           startContent={<FaTrash size={14} />}
           onPress={() => setIsDeleteModalOpen(true)}
         >

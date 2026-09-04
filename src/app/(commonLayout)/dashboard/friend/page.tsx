@@ -46,13 +46,13 @@ const Friend = () => {
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-2">
         <FaUserFriends className="text-[#D98E04]" size={18} />
-        <h1 className="text-lg font-semibold text-[#1C2430]">People</h1>
+        <h1 className="text-lg font-semibold text-white">People</h1>
       </div>
 
       {users?.map((user: IUser) => (
         <div
           key={user.id}
-          className="bg-white/80 border border-[#C9C4B] rounded-2xl p-4"
+          className="bg-[#141414]/80 border border-[#2A2A2A] rounded-2xl p-4"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -63,8 +63,8 @@ const Friend = () => {
                 src={user.profileImage}
               />
               <div>
-                <p className="text-sm font-semibold text-[#1C2430]">{user.name}</p>
-                <p className="text-xs text-[#1C2430]/50">{user.email}</p>
+                <p className="text-sm font-semibold text-white">{user.name}</p>
+                <p className="text-xs text-gray-500">{user.email}</p>
               </div>
             </div>
 
@@ -74,8 +74,8 @@ const Friend = () => {
                 onKeyDown={(e) => handleKeyDown(e, user.id)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   isFollowing(user.id)
-                    ? "bg-[#C9C4B]/30 text-[#1C2430]/60 hover:bg-[#C9C4B]/50"
-                    : "bg-white text-[#1C2430] hover:bg-[#C9C4B]/40"
+                    ? "bg-[#2A2A2A] text-gray-400 hover:bg-[#2A2A2A]/90"
+                    : "bg-[#141414] text-white hover:bg-[#2A2A2A]/80"
                 }`}
               >
                 {isFollowing(user.id) ? "Following" : "Follow"}

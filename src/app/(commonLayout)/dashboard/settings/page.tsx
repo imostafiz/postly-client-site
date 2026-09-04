@@ -23,70 +23,70 @@ const Settings = () => {
   return (
     <div className="max-w-[680px] mx-auto">
       <div className="mb-6">
-        <h1 className="text-lg font-semibold text-[#1C2430]">Settings</h1>
-        <p className="text-sm text-[#1C2430]/50">Manage your account preferences</p>
+        <h1 className="text-lg font-semibold text-white">Settings</h1>
+        <p className="text-sm text-gray-500">Manage your account preferences</p>
       </div>
 
-      <div className="bg-white/80 border border-[#C9C4B] rounded-2xl p-5 space-y-4">
+      <div className="bg-[#141414]/80 border border-[#2A2A2A] rounded-2xl p-5 space-y-4">
         <div className="relative">
-          <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40" size={15} />
+          <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
           <Input
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-white border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
         </div>
 
         <div className="relative">
-          <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40" size={15} />
+          <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
           <Input
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-white border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
         </div>
 
         <div className="relative">
-          <FaPhone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40" size={15} />
+          <FaPhone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
           <Input
             placeholder="Phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-white border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
         </div>
 
         <div className="relative">
-          <FaMapMarkerAlt className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1C2430]/40" size={15} />
+          <FaMapMarkerAlt className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
           <Input
             placeholder="Address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-white border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
         </div>
 
         <div className="flex justify-end pt-2">
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm px-6"
+            className="bg-[#141414] text-white font-semibold text-sm px-6"
             isLoading={isLoading}
             onClick={handleSave}
           >

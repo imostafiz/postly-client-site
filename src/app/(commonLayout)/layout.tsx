@@ -5,7 +5,7 @@ import RightSidebar from "@/src/components/shared/sidebar/RightSidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen bg-[#F2F1EB] px-4 lg:px-6">
+    <div className="min-h-screen bg-[#0A0A0A] px-4 lg:px-6">
       <div className="flex h-screen">
         <LeftSidebar />
 

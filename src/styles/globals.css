@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 :root {
-  --color-paper: #F2F1EB;
-  --color-ink: #1C2430;
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-border: #2A2A2A;
   --color-mustard: #D98E04;
   --color-field: #3F6B4F;
-  --color-hairline: #C9C4B;
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+  background-color: var(--color-bg);
+  color: #FFFFFF;
 }

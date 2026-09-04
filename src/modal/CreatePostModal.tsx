@@ -114,13 +114,13 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
       onOpenChange={handleClose}
       placement="center"
       classNames={{
-        base: "bg-white border border-[#C9C4B]",
-        header: "border-b border-[#C9C4B]",
-        footer: "border-t border-[#C9C4B]",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
-        <ModalHeader className="text-[#1C2430] font-semibold">
+        <ModalHeader className="text-white font-semibold">
           Create post
         </ModalHeader>
         <ModalBody className="gap-3 py-4">
@@ -128,10 +128,10 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            startContent={<FaPen className="text-[#1C2430]/40" size={14} />}
+            startContent={<FaPen className="text-gray-600" size={14} />}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
 
@@ -140,8 +140,8 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B] h-12",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
 
@@ -151,8 +151,8 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             onChange={(e) => setContent(e.target.value)}
             minRows={3}
             classNames={{
-              inputWrapper: "bg-white/60 border border-[#C9C4B]",
-              input: "text-[#1C2430] text-sm placeholder-[#1C2430]/35",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A]",
+              input: "text-white text-sm placeholder-gray-600",
             }}
           />
 
@@ -163,11 +163,11 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
                   <img
                     src={preview}
                     alt=""
-                    className="w-16 h-16 rounded-lg object-cover border border-[#C9C4B]"
+                    className="w-16 h-16 rounded-lg object-cover border border-[#2A2A2A]"
                   />
                   <button
                     onClick={() => removeImage(index)}
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#C9C4B]/30 border border-[#C9C4B]/60 rounded-full text-xs text-[#1C2430]/60 hover:text-[#1C2430] hover:bg-[#C9C4B]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#2A2A2A] border border-[#2A2A2A]/60 rounded-full text-xs text-gray-400 hover:text-white hover:bg-[#2A2A2A]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     &times;
                   </button>
@@ -176,7 +176,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             </div>
           )}
 
-          <label className="flex items-center justify-center gap-2 w-full py-3 border border-dashed border-[#C9C4B] rounded-xl text-[#1C2430]/50 hover:border-[#C9C4B]/60 hover:text-[#1C2430]/60 cursor-pointer transition-colors text-sm">
+          <label className="flex items-center justify-center gap-2 w-full py-3 border border-dashed border-[#2A2A2A] rounded-xl text-gray-500 hover:border-[#2A2A2A]/60 hover:text-gray-400 cursor-pointer transition-colors text-sm">
             <FaImage size={16} />
             <span>Add photos</span>
             <input
@@ -190,7 +190,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-[#C9C4B]/30 text-[#1C2430]/60 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={handleClose}
           >
             Cancel

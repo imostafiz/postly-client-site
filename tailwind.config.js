@@ -16,11 +16,10 @@ module.exports = {
         title2:["Yellowtail, cursive"]
       },
       colors: {
-        paper: '#F2F1EB',
-        ink: '#1C2430',
+        surface: '#141414',
+        border: '#2A2A2A',
         mustard: '#D98E04',
         field: '#3F6B4F',
-        hairline: '#C9C4B',
       },
     },
  

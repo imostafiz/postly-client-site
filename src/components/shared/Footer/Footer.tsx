@@ -1,17 +1,17 @@
 const Footer = () => {
   return (
     <footer className="space-y-3">
-      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-[#1C2430]/40">
+      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-600">
         {["About", "Help", "Press", "API", "Jobs", "Privacy", "Terms", "Locations"].map((link) => (
           <span
             key={link}
-            className="hover:text-[#1C2430]/60 cursor-pointer transition-colors"
+            className="hover:text-gray-400 cursor-pointer transition-colors"
           >
             {link}
           </span>
         ))}
       </div>
-      <p className="text-xs text-[#1C2430]/30">
+      <p className="text-xs text-gray-700">
         &copy; 2024 Postly &middot; Social Platform
       </p>
     </footer>

@@ -23,9 +23,9 @@ const UserManage = () => {
   };
 
   return (
-    <div className='p-6 text-[#1C2430]/60 b'>
+    <div className='p-6 text-gray-400 b'>
       <h2 className='text-2xl font-semibold mb-4'>User Management</h2>
-      <table className='min-w-full bg-white shadow-md rounded-lg overflow-hidden'>
+      <table className='min-w-full bg-[#141414] shadow-md rounded-lg overflow-hidden'>
         <thead className=''>
           <tr>
             <th className='py-2 px-4 text-left'>Image</th>
@@ -50,7 +50,7 @@ const UserManage = () => {
               <td className='py-2 px-4 capitalize'>{user.role}</td>
               <td className='py-2 px-4'>
                 <button
-                  className='text-red-600 hover:text-red-800'
+                  className='text-red-400 hover:text-red-300'
                   onClick={() => handleDelete(user.id)}
                 >
                   <FiTrash2 className='w-6 h-6' />
