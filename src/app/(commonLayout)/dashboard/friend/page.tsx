@@ -45,14 +45,14 @@ const Friend = () => {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-2">
-        <FaUserFriends className="text-blue-400" size={18} />
+        <FaUserFriends className="text-[#D98E04]" size={18} />
         <h1 className="text-lg font-semibold text-white">People</h1>
       </div>
 
       {users?.map((user: IUser) => (
         <div
           key={user.id}
-          className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4"
+          className="bg-[#141414]/80 border border-[#2A2A2A] rounded-2xl p-4"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -74,8 +74,8 @@ const Friend = () => {
                 onKeyDown={(e) => handleKeyDown(e, user.id)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   isFollowing(user.id)
-                    ? "bg-gray-800 text-gray-400 hover:bg-gray-700"
-                    : "bg-white text-gray-950 hover:bg-gray-200"
+                    ? "bg-[#2A2A2A] text-gray-400 hover:bg-[#2A2A2A]/90"
+                    : "bg-[#141414] text-white hover:bg-[#2A2A2A]/80"
                 }`}
               >
                 {isFollowing(user.id) ? "Following" : "Follow"}

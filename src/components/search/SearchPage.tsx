@@ -25,8 +25,8 @@ const SearchPage: React.FC<SearchPageProps> = ({ onSearch, onSort }) => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-black">
-      <form className="w-full max-w-sm bg-black w-full" onSubmit={handleSearch}>
+    <div className="flex justify-center items-center bg-[#0A0A0A]">
+      <form className="w-full max-w-sm bg-[#0A0A0A] w-full" onSubmit={handleSearch}>
         <div className="flex items-center border-b border-gray-500 py-2">
           <input
             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -46,7 +46,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ onSearch, onSort }) => {
 
       {/* Sort dropdown */}
       <select
-        className=" bg-black md:p-2 rounded"
+        className=" bg-[#0A0A0A] md:p-2 rounded"
         value={sortOption}
         onChange={handleSortChange} // Handle dropdown change
       >

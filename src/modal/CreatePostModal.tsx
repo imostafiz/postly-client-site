@@ -114,9 +114,9 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
       onOpenChange={handleClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
@@ -130,7 +130,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             onChange={(e) => setTitle(e.target.value)}
             startContent={<FaPen className="text-gray-600" size={14} />}
             classNames={{
-              inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -140,7 +140,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             classNames={{
-              inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -151,7 +151,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             onChange={(e) => setContent(e.target.value)}
             minRows={3}
             classNames={{
-              inputWrapper: "bg-gray-950/50 border border-gray-800",
+              inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A]",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -163,11 +163,11 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
                   <img
                     src={preview}
                     alt=""
-                    className="w-16 h-16 rounded-lg object-cover border border-gray-800"
+                    className="w-16 h-16 rounded-lg object-cover border border-[#2A2A2A]"
                   />
                   <button
                     onClick={() => removeImage(index)}
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gray-800 border border-gray-700 rounded-full text-xs text-gray-400 hover:text-white hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#2A2A2A] border border-[#2A2A2A]/60 rounded-full text-xs text-gray-400 hover:text-white hover:bg-[#2A2A2A]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     &times;
                   </button>
@@ -176,7 +176,7 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
             </div>
           )}
 
-          <label className="flex items-center justify-center gap-2 w-full py-3 border border-dashed border-gray-800 rounded-xl text-gray-500 hover:border-gray-700 hover:text-gray-400 cursor-pointer transition-colors text-sm">
+          <label className="flex items-center justify-center gap-2 w-full py-3 border border-dashed border-[#2A2A2A] rounded-xl text-gray-500 hover:border-[#2A2A2A]/60 hover:text-gray-400 cursor-pointer transition-colors text-sm">
             <FaImage size={16} />
             <span>Add photos</span>
             <input
@@ -190,13 +190,13 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose }) =>
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={handleClose}
           >
             Cancel
           </Button>
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm"
+            className="bg-[#D98E04] text-white font-semibold text-sm"
             isLoading={isLoading}
             onClick={handleSubmit}
             disabled={isLoading}

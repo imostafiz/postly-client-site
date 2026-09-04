@@ -34,7 +34,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
     <div className='flex min-h-screen relative'>
       {/* Toggle Button for Mobile Devices */}
       <button
-        className='lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-full'
+        className='lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#2A2A2A] text-white rounded-full'
         onClick={toggleSidebar}
       >
         <FaBars size={24} />
@@ -42,7 +42,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 p-4 bg-black text-white border-r border-gray-800 transform ${
+        className={`fixed inset-y-0 left-0 p-4 bg-[#0A0A0A] text-white border-r border-[#2A2A2A] transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 w-64 z-40`}
       >
@@ -91,7 +91,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
           </li>
           <li>
             <button
-              className='flex items-center space-x-4 hover:text-blue-600 w-full text-left px-2'
+              className='flex items-center space-x-4 hover:text-[#D98E04] w-full text-left px-2'
               onClick={handleLogOut}
             >
               <FaSignOutAlt size={20} />
@@ -104,7 +104,7 @@ const ManagementLayout = ({ children }: { children: ReactNode }) => {
       {/* Overlay for mobile when sidebar is open */}
       {isOpen && (
         <div
-          className='fixed inset-0 bg-black opacity-50 z-30 lg:hidden'
+          className='fixed inset-0 bg-[#0A0A0A] opacity-50 z-30 lg:hidden'
           role='button'
           tabIndex={0} // Ensure keyboard accessibility
           onClick={toggleSidebar}

@@ -36,7 +36,7 @@ const ContactUs = () => {
         <p className="text-sm text-gray-500">Have a question or feedback? Let us know.</p>
       </div>
 
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+      <div className="bg-[#141414]/80 border border-[#2A2A2A] rounded-2xl p-5 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="relative">
             <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
@@ -46,7 +46,7 @@ const ContactUs = () => {
               onChange={(e) => setName(e.target.value)}
               className="pl-11"
               classNames={{
-                inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+                inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
                 input: "text-white text-sm placeholder-gray-600",
               }}
             />
@@ -60,7 +60,7 @@ const ContactUs = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="pl-11"
               classNames={{
-                inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+                inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
                 input: "text-white text-sm placeholder-gray-600",
               }}
             />
@@ -72,7 +72,7 @@ const ContactUs = () => {
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+            inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
             input: "text-white text-sm placeholder-gray-600",
           }}
         />
@@ -83,14 +83,14 @@ const ContactUs = () => {
           onChange={(e) => setMessage(e.target.value)}
           minRows={4}
           classNames={{
-            inputWrapper: "bg-gray-900 border border-gray-800",
+            inputWrapper: "bg-[#141414] border border-[#2A2A2A]",
             input: "text-white text-sm placeholder-gray-600",
           }}
         />
 
         <div className="flex justify-end pt-2">
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm px-6"
+            className="bg-[#141414] text-white font-semibold text-sm px-6"
             isLoading={isLoading}
             onClick={handleSubmit}
             disabled={isLoading}

@@ -58,9 +58,9 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
@@ -80,7 +80,7 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 bg-gray-950/50 border border-gray-800 rounded-xl px-4 py-3"
+                  className="flex items-center gap-3 bg-[#141414]/60 border border-[#2A2A2A] rounded-xl px-4 py-3"
                 >
                   <feature.icon className={feature.color} size={16} />
                   <span className="text-gray-300 text-sm">{feature.text}</span>
@@ -97,7 +97,7 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
         </ModalBody>
         <ModalFooter className="gap-2 justify-center">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={onClose}
           >
             Maybe later

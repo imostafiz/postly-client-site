@@ -75,9 +75,9 @@ const UpdateProfileModal = ({
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
@@ -105,7 +105,7 @@ const UpdateProfileModal = ({
                 onChange={(e) => setName(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -122,7 +122,7 @@ const UpdateProfileModal = ({
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -139,7 +139,7 @@ const UpdateProfileModal = ({
                 onChange={(e) => setPhone(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -156,7 +156,7 @@ const UpdateProfileModal = ({
                 onChange={(e) => setAddress(e.target.value)}
                 className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  inputWrapper: "bg-[#141414]/60 border border-[#2A2A2A] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -165,13 +165,13 @@ const UpdateProfileModal = ({
         </ModalBody>
         <ModalFooter className="gap-2">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={onClose}
           >
             Cancel
           </Button>
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm"
+            className="bg-[#D98E04] text-white font-semibold text-sm"
             isLoading={isLoading}
             onClick={handleUserUpdate}
             disabled={isLoading}

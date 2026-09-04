@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useForgetPasswordMutation } from "@/src/redux/features/user";
 import { useUserLogin } from "@/src/hooks/auth.hooks";
 import { useUser } from "@/src/context/user.provider";
+import { Logo } from "@/src/components/icons";
 
 interface LoginDataType {
   email: string;
@@ -78,17 +79,15 @@ const LoginPage = () => {
   }, [isSuccess, isError, redirect, router]);
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-gray-800/50">
+    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-[#2A2A2A]/50">
         {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-[45%] relative bg-gradient-to-br from-gray-900 to-gray-950 p-12 flex-col justify-between">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
+        <div className="hidden lg:flex lg:w-[45%] relative bg-[#141414] p-12 flex-col justify-between">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-2.5 mb-16">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
-                <span className="text-gray-950 font-bold text-lg">P</span>
-              </div>
+              <Logo className="text-white" size={40} />
               <span className="text-xl font-semibold text-white">Postly</span>
             </div>
 
@@ -107,7 +106,7 @@ const LoginPage = () => {
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="w-8 h-8 rounded-full border-2 border-gray-900 bg-gray-700 flex items-center justify-center text-xs text-gray-400"
+                  className="w-8 h-8 rounded-full border-2 border-[#2A2A2A] bg-gray-700 flex items-center justify-center text-xs text-gray-400"
                 >
                   {i}
                 </div>
@@ -118,12 +117,10 @@ const LoginPage = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
+        <div className="w-full lg:w-[55%] bg-[#0A0A0A] p-8 sm:p-12">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
-            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-gray-950 font-bold text-sm">P</span>
-            </div>
+            <Logo className="text-white" size={32} />
             <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 
@@ -152,7 +149,7 @@ const LoginPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -172,7 +169,7 @@ const LoginPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -192,7 +189,7 @@ const LoginPage = () => {
           <Button
             fullWidth
             size="lg"
-            className="mt-6 bg-white text-gray-950 font-semibold text-sm hover:bg-gray-100 transition-colors"
+            className="mt-6 bg-[#2A2A2A] text-white font-semibold text-sm hover:bg-[#2A2A2A]/80 transition-colors"
             isLoading={isPending}
             onClick={handleLogin}
           >
@@ -201,9 +198,9 @@ const LoginPage = () => {
 
           {/* Divider */}
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-gray-800/80" />
+            <div className="flex-1 border-t border-[#2A2A2A]/80" />
             <span className="px-3 text-xs text-gray-600">or</span>
-            <div className="flex-1 border-t border-gray-800/80" />
+            <div className="flex-1 border-t border-[#2A2A2A]/80" />
           </div>
 
           {/* Register */}
@@ -223,10 +220,10 @@ const LoginPage = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setIsModalOpen(false)}
           />
-          <div className="relative bg-gray-900 border border-gray-800 rounded-2xl p-8 w-full max-w-md shadow-2xl">
+          <div className="relative bg-[#141414] border border-[#2A2A2A] rounded-2xl p-8 w-full max-w-md shadow-2xl">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
@@ -256,7 +253,7 @@ const LoginPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 h-12",
+                    "bg-[#141414]/90 border border-[#2A2A2A] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -266,14 +263,14 @@ const LoginPage = () => {
               <Button
                 fullWidth
                 variant="flat"
-                className="bg-gray-800 text-gray-300 font-medium text-sm h-11"
+                className="bg-[#2A2A2A] text-gray-300 font-medium text-sm h-11"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
               </Button>
               <Button
                 fullWidth
-                className="bg-white text-gray-950 font-semibold text-sm h-11"
+                className="bg-[#2A2A2A] text-white font-semibold text-sm h-11"
                 onClick={handleForgotPassword}
               >
                 Send link
@@ -289,8 +286,8 @@ const LoginPage = () => {
 const WrappedLoginPage = () => (
   <Suspense
     fallback={
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-gray-700 border-t-white rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-[#2A2A2A]/60 border-t-[#D98E04] rounded-full animate-spin" />
       </div>
     }
   >

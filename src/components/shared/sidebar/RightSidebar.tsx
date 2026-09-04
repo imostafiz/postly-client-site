@@ -37,7 +37,7 @@ const RightSidebar = () => {
   };
 
   return (
-    <aside className="hidden lg:block fixed right-0 top-0 h-screen w-[320px] border-l border-gray-800 bg-gray-950 overflow-y-auto">
+    <aside className="hidden lg:block fixed right-4 lg:right-6 top-0 h-screen w-[320px] border-l border-[#2A2A2A] bg-[#0A0A0A] overflow-y-auto">
       <div className="p-6">
         {/* Search Header */}
         <div className="mb-6">
@@ -57,7 +57,7 @@ const RightSidebar = () => {
             users?.slice(0, 8).map((user: IUser) => (
               <div
                 key={user.id}
-                className="flex items-center justify-between p-3 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-700 transition-colors"
+                className="flex items-center justify-between p-3 rounded-xl bg-[#141414]/80 border border-[#2A2A2A] hover:border-[#2A2A2A]/60 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <Avatar
@@ -85,7 +85,7 @@ const RightSidebar = () => {
                     color={isFollowing(user.id) ? "default" : "primary"}
                     className={`flex-shrink-0 ml-3 ${
                       isFollowing(user.id)
-                        ? "bg-gray-800 text-gray-400"
+                        ? "bg-[#2A2A2A] text-gray-400"
                         : ""
                     }`}
                     onClick={() => handleFollowUser(user.id)}
@@ -122,7 +122,7 @@ const RightSidebar = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-8 pt-6 border-t border-gray-800">
+        <div className="mt-8 pt-6 border-t border-[#2A2A2A]">
           <Footer />
         </div>
       </div>

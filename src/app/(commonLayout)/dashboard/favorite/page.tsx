@@ -28,7 +28,7 @@ const FavoritePostPage = () => {
           return (
             <div
               key={item.id}
-              className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden"
+              className="bg-[#141414]/80 border border-[#2A2A2A] rounded-2xl overflow-hidden"
             >
               {/* Post Header */}
               <div className="p-4">
@@ -51,7 +51,7 @@ const FavoritePostPage = () => {
                         {post?.userId?.name}
                       </Link>
                       {post?.userId?.isPremium && (
-                        <MdVerified className="text-blue-500" size={14} />
+                        <MdVerified className="text-[#D98E04]" size={14} />
                       )}
                     </div>
                     <p className="text-xs text-gray-500">{post?.category}</p>

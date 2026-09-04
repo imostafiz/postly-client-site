@@ -27,9 +27,9 @@ export default function DeletePostModal({
       onOpenChange={onClose}
       placement="center"
       classNames={{
-        base: "bg-gray-900 border border-gray-800",
-        header: "border-b border-gray-800",
-        footer: "border-t border-gray-800",
+        base: "bg-[#141414] border border-[#2A2A2A]",
+        header: "border-b border-[#2A2A2A]",
+        footer: "border-t border-[#2A2A2A]",
       }}
     >
       <ModalContent>
@@ -48,7 +48,7 @@ export default function DeletePostModal({
         </ModalBody>
         <ModalFooter className="gap-2 justify-center">
           <Button
-            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            className="bg-[#2A2A2A] text-gray-400 font-medium text-sm"
             onClick={onClose}
           >
             Cancel

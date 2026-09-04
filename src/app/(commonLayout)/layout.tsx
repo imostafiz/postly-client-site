@@ -5,16 +5,18 @@ import RightSidebar from "@/src/components/shared/sidebar/RightSidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex h-screen bg-gray-950">
-      <LeftSidebar />
+    <div className="min-h-screen bg-[#0A0A0A] px-4 lg:px-6">
+      <div className="flex h-screen">
+        <LeftSidebar />
 
-      <main className="flex-1 lg:ml-[280px] lg:mr-[320px] overflow-y-auto">
-        <div className="max-w-[680px] mx-auto px-4 py-6 lg:px-6">
-          {children}
-        </div>
-      </main>
+        <main className="flex-1 lg:ml-[304px] lg:mr-[344px] overflow-y-auto">
+          <div className="max-w-[680px] mx-auto py-6">
+            {children}
+          </div>
+        </main>
 
-      <RightSidebar />
+        <RightSidebar />
+      </div>
     </div>
   );
 };

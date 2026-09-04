@@ -27,7 +27,7 @@ const Settings = () => {
         <p className="text-sm text-gray-500">Manage your account preferences</p>
       </div>
 
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+      <div className="bg-[#141414]/80 border border-[#2A2A2A] rounded-2xl p-5 space-y-4">
         <div className="relative">
           <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
           <Input
@@ -36,7 +36,7 @@ const Settings = () => {
             onChange={(e) => setName(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -50,7 +50,7 @@ const Settings = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -64,7 +64,7 @@ const Settings = () => {
             onChange={(e) => setPhone(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -78,7 +78,7 @@ const Settings = () => {
             onChange={(e) => setAddress(e.target.value)}
             className="pl-11"
             classNames={{
-              inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+              inputWrapper: "bg-[#141414] border border-[#2A2A2A] h-12",
               input: "text-white text-sm placeholder-gray-600",
             }}
           />
@@ -86,7 +86,7 @@ const Settings = () => {
 
         <div className="flex justify-end pt-2">
           <Button
-            className="bg-white text-gray-950 font-semibold text-sm px-6"
+            className="bg-[#141414] text-white font-semibold text-sm px-6"
             isLoading={isLoading}
             onClick={handleSave}
           >

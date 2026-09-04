@@ -28,7 +28,7 @@ const Profile = () => {
       <div className="relative">
         {/* Cover Image */}
         <div className="h-48 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-950/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0A0A0A]/80" />
         </div>
 
         {/* Profile Info */}
@@ -40,13 +40,13 @@ const Profile = () => {
               color="primary"
               shape="circle"
               placement="bottom-right"
-              className="border-4 border-gray-950"
+              className="border-4 border-[#0A0A0A]"
             >
               <Avatar
                 isBordered
                 className="w-28 h-28"
                 src={user?.data?.profileImage}
-                class="border-4 border-gray-950"
+                class="border-4 border-[#0A0A0A]"
               />
             </Badge>
 
@@ -54,7 +54,7 @@ const Profile = () => {
               variant="bordered"
               size="sm"
               radius="full"
-              className="border-gray-700 text-gray-300 hover:bg-gray-800"
+              className="border-[#2A2A2A]/60 text-gray-300 hover:bg-[#2A2A2A]/80"
               onClick={() => setModalOpen(true)}
             >
               Edit Profile
@@ -69,7 +69,7 @@ const Profile = () => {
                   {user?.data?.name}
                 </h1>
                 {user?.data?.isPremium && (
-                  <MdVerified className="text-blue-500" size={20} />
+                  <MdVerified className="text-[#D98E04]" size={20} />
                 )}
               </div>
               <p className="text-gray-500">{user?.data?.email}</p>
@@ -101,17 +101,17 @@ const Profile = () => {
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {user?.data?.address && (
-                <span className="px-3 py-1 text-xs text-gray-400 bg-gray-800 rounded-full">
+                <span className="px-3 py-1 text-xs text-gray-400 bg-[#2A2A2A] rounded-full">
                   {user?.data?.address}
                 </span>
               )}
               {user?.data?.phone && (
-                <span className="px-3 py-1 text-xs text-gray-400 bg-gray-800 rounded-full">
+                <span className="px-3 py-1 text-xs text-gray-400 bg-[#2A2A2A] rounded-full">
                   {user?.data?.phone}
                 </span>
               )}
               {user?.data?.role === "admin" && (
-                <span className="px-3 py-1 text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full">
+                <span className="px-3 py-1 text-xs text-[#D98E04] bg-[#D98E04]/10 border border-[#D98E04]/20 rounded-full">
                   Admin
                 </span>
               )}
@@ -120,7 +120,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <Divider className="bg-gray-800" />
+      <Divider className="bg-[#2A2A2A]" />
 
       {/* Posts Section */}
       <div className="mt-6">

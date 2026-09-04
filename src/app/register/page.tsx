@@ -10,6 +10,7 @@ import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 
 import { registerUser } from "@/src/services/authService";
 import { useUser } from "@/src/context/user.provider";
+import { Logo } from "@/src/components/icons";
 
 const IMAGE_UPLOAD_LINK =
   "https://api.imgbb.com/1/upload?key=63e5e5d08878e2104d3082bebc10b603";
@@ -95,17 +96,15 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-gray-800/50">
+    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-[#2A2A2A]/50">
         {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-[45%] relative bg-gradient-to-br from-gray-900 to-gray-950 p-12 flex-col justify-between">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
+        <div className="hidden lg:flex lg:w-[45%] relative bg-[#141414] p-12 flex-col justify-between">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-2.5 mb-16">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
-                <span className="text-gray-950 font-bold text-lg">P</span>
-              </div>
+              <Logo className="text-white" size={40} />
               <span className="text-xl font-semibold text-white">Postly</span>
             </div>
 
@@ -125,7 +124,7 @@ const RegisterPage = () => {
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="w-8 h-8 rounded-full border-2 border-gray-900 bg-gray-700 flex items-center justify-center text-xs text-gray-400"
+                  className="w-8 h-8 rounded-full border-2 border-[#2A2A2A] bg-gray-700 flex items-center justify-center text-xs text-gray-400"
                 >
                   {i}
                 </div>
@@ -136,12 +135,10 @@ const RegisterPage = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
+        <div className="w-full lg:w-[55%] bg-[#0A0A0A] p-8 sm:p-12">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2.5 mb-10">
-            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-gray-950 font-bold text-sm">P</span>
-            </div>
+            <Logo className="text-white" size={32} />
             <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 
@@ -169,10 +166,10 @@ const RegisterPage = () => {
                   <img
                     src={preview}
                     alt="Avatar"
-                    className="w-16 h-16 rounded-2xl object-cover border-2 border-gray-800 group-hover:border-gray-700 transition-colors"
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-[#2A2A2A] group-hover:border-[#2A2A2A] transition-colors"
                   />
                 ) : (
-                  <div className="w-16 h-16 rounded-2xl bg-gray-900 border-2 border-dashed border-gray-700 flex items-center justify-center group-hover:border-gray-600 transition-colors">
+                  <div className="w-16 h-16 rounded-2xl bg-[#141414] border-2 border-dashed border-[#2A2A2A]/60 flex items-center justify-center group-hover:border-[#2A2A2A] transition-colors">
                     <FaImage className="text-gray-600" size={20} />
                   </div>
                 )}
@@ -201,7 +198,7 @@ const RegisterPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -220,7 +217,7 @@ const RegisterPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -239,7 +236,7 @@ const RegisterPage = () => {
                 className="pl-11"
                 classNames={{
                   inputWrapper:
-                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                    "bg-[#141414]/90 border border-[#2A2A2A] hover:border-[#2A2A2A] focus-within:border-[#D98E04] h-12",
                   input: "text-white text-sm placeholder-gray-600",
                 }}
               />
@@ -255,7 +252,7 @@ const RegisterPage = () => {
                 onChange={(e) => setAgreed(e.target.checked)}
                 className="peer sr-only"
               />
-              <div className="w-4 h-4 rounded border border-gray-700 bg-gray-900 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-colors flex items-center justify-center">
+              <div className="w-4 h-4 rounded border border-[#2A2A2A]/60 bg-[#141414] peer-checked:bg-[#D98E04] peer-checked:border-[#D98E04] transition-colors flex items-center justify-center">
                 {agreed && (
                   <svg
                     className="w-2.5 h-2.5 text-white"
@@ -289,7 +286,7 @@ const RegisterPage = () => {
           <Button
             fullWidth
             size="lg"
-            className="mt-6 bg-white text-gray-950 font-semibold text-sm hover:bg-gray-100 transition-colors"
+            className="mt-6 bg-[#2A2A2A] text-white font-semibold text-sm hover:bg-[#2A2A2A]/80 transition-colors"
             isLoading={isLoading}
             onClick={handleRegister}
             disabled={isLoading}
@@ -299,9 +296,9 @@ const RegisterPage = () => {
 
           {/* Divider */}
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-gray-800/80" />
+            <div className="flex-1 border-t border-[#2A2A2A]/80" />
             <span className="px-3 text-xs text-gray-600">or</span>
-            <div className="flex-1 border-t border-gray-800/80" />
+            <div className="flex-1 border-t border-[#2A2A2A]/80" />
           </div>
 
           {/* Login */}
