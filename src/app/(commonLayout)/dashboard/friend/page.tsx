@@ -2,6 +2,7 @@
 
 import { Avatar } from "@nextui-org/react";
 import { toast } from "sonner";
+import { FaUserFriends } from "react-icons/fa";
 
 import { useGetUser } from "@/src/hooks/auth.hooks";
 import {
@@ -35,57 +36,55 @@ const Friend = () => {
     }
   };
 
+  const isFollowing = (followeeId: string) => {
+    return newData?.data?.following?.some(
+      (follower: any) => follower === followeeId,
+    );
+  };
+
   return (
-    <>
-      <div>
-        {users?.map((user: IUser) => {
-          return (
-            <div
-              key={user.id}
-              className="border border-gray-900 rounded-xl p-2 my-3"
-            >
-              <div className="flex justify-between">
-                <div className="flex gap-4">
-                  <div>
-                    <Avatar
-                      isBordered
-                      radius="full"
-                      size="md"
-                      src={user.profileImage}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1 items-start justify-center">
-                    <h4 className="text-small font-semibold leading-none text-default-600">
-                      {user.name}
-                    </h4>
-                    <h5 className="text-small tracking-tight text-default-400">
-                      {user.email}
-                    </h5>
-                  </div>
-                </div>
-                <div>
-                  {user?.id !== userId && (
-                    <div
-                      className="text-blue-500 ms-2 cursor-pointer"
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => handleFollowUser(user.id)}
-                      onKeyDown={(event) => handleKeyDown(event, user.id)}
-                    >
-                      {newData?.data?.following?.some(
-                        (follower: any) => follower === user.id,
-                      )
-                        ? "Following"
-                        : "Follow"}
-                    </div>
-                  )}
-                </div>
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 mb-2">
+        <FaUserFriends className="text-blue-400" size={18} />
+        <h1 className="text-lg font-semibold text-white">People</h1>
+      </div>
+
+      {users?.map((user: IUser) => (
+        <div
+          key={user.id}
+          className="bg-gray-900/50 border border-gray-800 rounded-2xl p-4"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Avatar
+                isBordered
+                radius="full"
+                size="md"
+                src={user.profileImage}
+              />
+              <div>
+                <p className="text-sm font-semibold text-white">{user.name}</p>
+                <p className="text-xs text-gray-500">{user.email}</p>
               </div>
             </div>
-          );
-        })}
-      </div>
-    </>
+
+            {user?.id !== userId && (
+              <button
+                onClick={() => handleFollowUser(user.id)}
+                onKeyDown={(e) => handleKeyDown(e, user.id)}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  isFollowing(user.id)
+                    ? "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                    : "bg-white text-gray-950 hover:bg-gray-200"
+                }`}
+              >
+                {isFollowing(user.id) ? "Following" : "Follow"}
+              </button>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 

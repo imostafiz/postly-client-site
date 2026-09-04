@@ -5,7 +5,8 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { FaUser, FaEnvelope, FaLock, FaPhone, FaMapMarkerAlt, FaImage, FaUsers, FaCamera, FaHeart } from "react-icons/fa";
+import Link from "next/link";
+import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 
 import { registerUser } from "@/src/services/authService";
 import { useUser } from "@/src/context/user.provider";
@@ -16,26 +17,26 @@ const IMAGE_UPLOAD_LINK =
 const RegisterPage = () => {
   const router = useRouter();
   const { setIsLoading } = useUser();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    address: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string>("");
   const [isLoading, setLoading] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setSelectedImage(event.target.files[0]);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setSelectedImage(file);
+      setPreview(URL.createObjectURL(file));
     }
   };
 
   const uploadImage = async (image: File): Promise<string> => {
-    const imageData = new FormData();
-    imageData.append("image", image);
-    const response = await axios.post(IMAGE_UPLOAD_LINK, imageData);
+    const formData = new FormData();
+    formData.append("image", image);
+    const response = await axios.post(IMAGE_UPLOAD_LINK, formData);
     if (response.data.success) {
       return response.data.data.url;
     }
@@ -43,250 +44,275 @@ const RegisterPage = () => {
   };
 
   const handleRegister = async () => {
-    if (!formData.name || !formData.email || !formData.password) {
-      toast.error("Please fill in all required fields.");
+    if (!name.trim()) {
+      toast.error("Please enter your name.");
       return;
     }
-    if (formData.password.length < 6) {
+    if (!email.trim()) {
+      toast.error("Please enter your email.");
+      return;
+    }
+    if (!password) {
+      toast.error("Please enter a password.");
+      return;
+    }
+    if (password.length < 6) {
       toast.error("Password must be at least 6 characters.");
+      return;
+    }
+    if (!agreed) {
+      toast.error("Please agree to the Terms & Conditions.");
       return;
     }
 
     try {
       setLoading(true);
-      let profileImageUrl = "";
+      let profileImage = "";
 
       if (selectedImage) {
-        profileImageUrl = await uploadImage(selectedImage);
+        profileImage = await uploadImage(selectedImage);
       }
 
-      const userData = {
-        ...formData,
-        profileImage: profileImageUrl || undefined,
-      };
+      const response = await registerUser({
+        name,
+        email,
+        password,
+        profileImage: profileImage || undefined,
+      });
 
-      const response = await registerUser(userData);
       if (response.success) {
         setIsLoading(true);
-        toast.success("Registration successful!");
+        toast.success("Welcome to Postly!");
         router.push("/dashboard");
       } else {
         toast.error(response.message || "Registration failed");
       }
-    } catch (error: any) {
-      toast.error("Error occurred during registration");
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 flex">
-      {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-blue-600/10 to-gray-950" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-gray-800/50">
+        {/* Left Side - Branding */}
+        <div className="hidden lg:flex lg:w-[45%] relative bg-gradient-to-br from-gray-900 to-gray-950 p-12 flex-col justify-between">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
 
-        <div className="relative z-10 flex flex-col justify-center px-16">
-          {/* Logo */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25">
-              <span className="text-white font-bold text-2xl">P</span>
+          <div className="relative z-10">
+            <div className="flex items-center gap-2.5 mb-16">
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+                <span className="text-gray-950 font-bold text-lg">P</span>
+              </div>
+              <span className="text-xl font-semibold text-white">Postly</span>
             </div>
-            <span className="text-3xl font-bold text-white">Postly</span>
+
+            <h1 className="text-[40px] font-bold text-white leading-[1.15] mb-4">
+              Share what
+              <br />
+              matters to you.
+            </h1>
+            <p className="text-gray-400 text-base leading-relaxed max-w-sm">
+              Create an account to start posting, connecting with others, and
+              building your community.
+            </p>
           </div>
 
-          {/* Tagline */}
-          <h1 className="text-5xl font-bold text-white leading-tight mb-6">
-            Start Your
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Journey
-            </span>
-          </h1>
-          <p className="text-gray-400 text-lg mb-12 max-w-md">
-            Join millions of people sharing their stories, ideas, and moments. Connect with friends and discover new content.
-          </p>
-
-          {/* Features */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center">
-                <FaUsers className="text-blue-400" size={18} />
-              </div>
-              <span className="text-gray-300">Create your profile</span>
+          <div className="relative z-10 flex items-center gap-3 text-sm text-gray-500">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  className="w-8 h-8 rounded-full border-2 border-gray-900 bg-gray-700 flex items-center justify-center text-xs text-gray-400"
+                >
+                  {i}
+                </div>
+              ))}
             </div>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center">
-                <FaCamera className="text-green-400" size={18} />
-              </div>
-              <span className="text-gray-300">Share photos & moments</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
-                <FaHeart className="text-purple-400" size={18} />
-              </div>
-              <span className="text-gray-300">Get advice from friends</span>
-            </div>
+            <span>Join 10,000+ users already here</span>
           </div>
         </div>
-      </div>
 
-      {/* Right Side - Register Form */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12">
-        <div className="w-full max-w-md">
+        {/* Right Side - Form */}
+        <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-10">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
-              <span className="text-white font-bold text-xl">P</span>
+          <div className="lg:hidden flex items-center gap-2.5 mb-10">
+            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
+              <span className="text-gray-950 font-bold text-sm">P</span>
             </div>
-            <span className="text-2xl font-bold text-white">Postly</span>
+            <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 
-          {/* Form Header */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-2">Create an account</h2>
-            <p className="text-gray-500">Join the conversation today</p>
+            <h2 className="text-2xl font-bold text-white mb-1.5">
+              Create your account
+            </h2>
+            <p className="text-gray-500 text-sm">
+              Fill in the details below to get started
+            </p>
           </div>
 
-          {/* Form */}
-          <div className="space-y-4">
-            {/* Name */}
-            <div className="relative">
-              <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-              <Input
-                name="name"
-                type="text"
-                placeholder="Full name *"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="pl-12"
-                classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
-                }}
-              />
-            </div>
-
-            {/* Email */}
-            <div className="relative">
-              <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email address *"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="pl-12"
-                classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
-                }}
-              />
-            </div>
-
-            {/* Password */}
-            <div className="relative">
-              <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-              <Input
-                name="password"
-                type="password"
-                placeholder="Password (min. 6 characters) *"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="pl-12"
-                classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
-                }}
-              />
-            </div>
-
-            {/* Phone */}
-            <div className="relative">
-              <FaPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-              <Input
-                name="phone"
-                type="tel"
-                placeholder="Phone number"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="pl-12"
-                classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
-                }}
-              />
-            </div>
-
-            {/* Address */}
-            <div className="relative">
-              <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-              <Input
-                name="address"
-                type="text"
-                placeholder="Address"
-                value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                className="pl-12"
-                classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
-                }}
-              />
-            </div>
-
-            {/* Profile Image */}
-            <div className="relative">
-              <FaImage className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+          {/* Avatar Upload */}
+          <div className="flex items-center gap-4 mb-8">
+            <div className="relative group">
               <input
-                name="profileImage"
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
                 className="hidden"
-                id="profileImage"
+                id="avatar"
               />
-              <label
-                htmlFor="profileImage"
-                className="flex items-center gap-3 w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-xl text-gray-500 hover:border-gray-700 cursor-pointer transition-colors"
-              >
-                {selectedImage ? (
-                  <span className="text-gray-300 truncate">{selectedImage.name}</span>
+              <label htmlFor="avatar" className="cursor-pointer block">
+                {preview ? (
+                  <img
+                    src={preview}
+                    alt="Avatar"
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-gray-800 group-hover:border-gray-700 transition-colors"
+                  />
                 ) : (
-                  <span>Choose profile image (optional)</span>
+                  <div className="w-16 h-16 rounded-2xl bg-gray-900 border-2 border-dashed border-gray-700 flex items-center justify-center group-hover:border-gray-600 transition-colors">
+                    <FaImage className="text-gray-600" size={20} />
+                  </div>
                 )}
               </label>
             </div>
+            <div>
+              <p className="text-sm font-medium text-gray-300">
+                Profile photo
+              </p>
+              <p className="text-xs text-gray-600">Optional</p>
+            </div>
+          </div>
 
-            <Button
-              fullWidth
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold mt-6"
-              isLoading={isLoading}
-              onClick={handleRegister}
-              disabled={isLoading}
+          {/* Form Fields */}
+          <div className="space-y-3.5">
+            <div className="relative">
+              <FaUser
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                type="text"
+                placeholder="Full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper:
+                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+
+            <div className="relative">
+              <FaEnvelope
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper:
+                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+
+            <div className="relative">
+              <FaLock
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                type="password"
+                placeholder="Password (min. 6 characters)"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper:
+                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Terms */}
+          <label className="flex items-start gap-3 mt-5 cursor-pointer group">
+            <div className="relative flex-shrink-0 mt-0.5">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="peer sr-only"
+              />
+              <div className="w-4 h-4 rounded border border-gray-700 bg-gray-900 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-colors flex items-center justify-center">
+                {agreed && (
+                  <svg
+                    className="w-2.5 h-2.5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={3}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                )}
+              </div>
+            </div>
+            <span className="text-xs text-gray-500 leading-relaxed">
+              I agree to the{" "}
+              <span className="text-gray-400 hover:text-gray-300 cursor-pointer">
+                Terms of Service
+              </span>{" "}
+              and{" "}
+              <span className="text-gray-400 hover:text-gray-300 cursor-pointer">
+                Privacy Policy
+              </span>
+            </span>
+          </label>
+
+          {/* Submit */}
+          <Button
+            fullWidth
+            size="lg"
+            className="mt-6 bg-white text-gray-950 font-semibold text-sm hover:bg-gray-100 transition-colors"
+            isLoading={isLoading}
+            onClick={handleRegister}
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating account..." : "Create account"}
+          </Button>
+
+          {/* Divider */}
+          <div className="flex items-center my-6">
+            <div className="flex-1 border-t border-gray-800/80" />
+            <span className="px-3 text-xs text-gray-600">or</span>
+            <div className="flex-1 border-t border-gray-800/80" />
+          </div>
+
+          {/* Login */}
+          <p className="text-center text-sm text-gray-500">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="text-white font-medium hover:underline underline-offset-4"
             >
-              {isLoading ? "Creating account..." : "Create account"}
-            </Button>
-          </div>
-
-          {/* Login Link */}
-          <div className="text-center mt-8">
-            <p className="text-gray-500">
-              Already have an account?{" "}
-              <a
-                href="/login"
-                className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
-              >
-                Sign in
-              </a>
-            </p>
-          </div>
-
-          {/* Footer */}
-          <p className="text-center text-xs text-gray-700 mt-12">
-            &copy; 2024 Postly. All rights reserved.
+              Sign in
+            </Link>
           </p>
         </div>
       </div>

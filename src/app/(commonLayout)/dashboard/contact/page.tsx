@@ -1,129 +1,107 @@
 "use client";
+
 import { useState } from "react";
+import { Button } from "@nextui-org/button";
+import { Input, Textarea } from "@nextui-org/input";
 import { toast } from "sonner";
+import { FaUser, FaEnvelope, FaPaperPlane } from "react-icons/fa";
 
-const ContractUs = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+const ContactUs = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
-  const isFormValid =
-    formData.name && formData.email && formData.subject && formData.message;
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { id, value } = e.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isFormValid) {
-      toast.success("Message sent");
-      // You can also clear the form after submitting
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
+  const handleSubmit = async () => {
+    if (!name || !email || !message) {
+      toast.error("Please fill in all required fields");
+      return;
     }
+
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 1000));
+    toast.success("Message sent!");
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+    setLoading(false);
   };
 
   return (
-    <>
-      <section className="py-2 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-black p-8 md:p-12 rounded-lg shadow-lg max-w-4xl mx-auto">
-            <h3 className="text-2xl font-semibold text-[#003580] mb-6 text-center animate__animated animate__fadeIn">
-              Get in Touch
-            </h3>
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="animate__animated animate__fadeIn animate__delay-1s">
-                  <label className="block text-gray-700 mb-2" htmlFor="name">
-                    Name
-                  </label>
-                  <input
-                    required
-                    className="w-full p-3 border border-black rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#003580] transition"
-                    id="name"
-                    placeholder="Your Name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="animate__animated animate__fadeIn animate__delay-2s">
-                  <label className="block text-gray-700 mb-2" htmlFor="email">
-                    Email
-                  </label>
-                  <input
-                    required
-                    className="w-full p-3 border border-black rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#003580] transition"
-                    id="email"
-                    placeholder="Your Email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="animate__animated animate__fadeIn animate__delay-3s">
-                <label className="block text-gray-700 mb-2" htmlFor="subject">
-                  Subject
-                </label>
-                <input
-                  required
-                  className="w-full p-3 border border-black rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#003580] transition"
-                  id="subject"
-                  placeholder="Subject"
-                  type="text"
-                  value={formData.subject}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="animate__animated animate__fadeIn animate__delay-4s">
-                <label className="block text-gray-700 mb-2" htmlFor="message">
-                  Message
-                </label>
-                <textarea
-                  required
-                  className="w-full p-3 border border-black rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#003580] transition"
-                  id="message"
-                  placeholder="Your Message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="text-center">
-                <button
-                  className={`px-6 py-1 font-semibold rounded-full shadow-md transition-colors ${
-                    isFormValid
-                      ? "bg-blue-700 text-white hover:bg-[#00245d]"
-                      : "bg-blue-400 text-gray-200 cursor-not-allowed"
-                  }`}
-                  disabled={!isFormValid}
-                  type="submit"
-                >
-                  Send
-                </button>
-              </div>
-            </form>
+    <div className="max-w-[680px] mx-auto">
+      <div className="mb-6">
+        <h1 className="text-lg font-semibold text-white">Contact us</h1>
+        <p className="text-sm text-gray-500">Have a question or feedback? Let us know.</p>
+      </div>
+
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="relative">
+            <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+            <Input
+              placeholder="Name *"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="pl-11"
+              classNames={{
+                inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+                input: "text-white text-sm placeholder-gray-600",
+              }}
+            />
+          </div>
+
+          <div className="relative">
+            <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600" size={15} />
+            <Input
+              placeholder="Email *"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="pl-11"
+              classNames={{
+                inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+                input: "text-white text-sm placeholder-gray-600",
+              }}
+            />
           </div>
         </div>
-      </section>
-    </>
+
+        <Input
+          placeholder="Subject"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          classNames={{
+            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+            input: "text-white text-sm placeholder-gray-600",
+          }}
+        />
+
+        <Textarea
+          placeholder="Your message *"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          minRows={4}
+          classNames={{
+            inputWrapper: "bg-gray-900 border border-gray-800",
+            input: "text-white text-sm placeholder-gray-600",
+          }}
+        />
+
+        <div className="flex justify-end pt-2">
+          <Button
+            className="bg-white text-gray-950 font-semibold text-sm px-6"
+            isLoading={isLoading}
+            onClick={handleSubmit}
+            disabled={isLoading}
+            startContent={!isLoading && <FaPaperPlane size={14} />}
+          >
+            Send
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default ContractUs;
+export default ContactUs;

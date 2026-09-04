@@ -9,11 +9,12 @@ import {
   ModalFooter,
   Button,
   Input,
+  Avatar,
 } from "@nextui-org/react";
 import { toast } from "sonner";
+import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 import { useGetUser } from "../hooks/auth.hooks";
-
 import { useUpdateProfileMutation } from "@/src/redux/features/user";
 
 interface UpdateProfileModalProps {
@@ -29,101 +30,153 @@ const UpdateProfileModal = ({
 }: UpdateProfileModalProps) => {
   const [updateProfile] = useUpdateProfileMutation();
   const { refetch } = useGetUser();
-  // State to hold form data
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
-      setFormData({
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-      });
+      setName(user.name || "");
+      setEmail(user.email || "");
+      setPhone(user.phone || "");
+      setAddress(user.address || "");
     }
   }, [user]);
-
-  // eslint-disable-next-line prettier/prettier
-  const handleInputChange = (e:ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleUserUpdate = async () => {
     const userId = user?.id;
 
     if (!userId) {
       toast.error("User ID is not available.");
-
       return;
     }
 
     try {
-      const userData = { ...formData };
-
-      await updateProfile({ userId, userData }).unwrap();
-      toast.success("Profile updated successfully!");
+      setLoading(true);
+      await updateProfile({
+        userId,
+        userData: { name, email, phone, address },
+      }).unwrap();
+      toast.success("Profile updated!");
       onClose();
       await refetch();
     } catch (error) {
-      console.error("Failed to update profile:", error);
-      toast.error("Failed to update profile. Please try again.");
+      toast.error("Failed to update profile.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Modal isOpen={isOpen} placement="top-center" onOpenChange={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      placement="center"
+      classNames={{
+        base: "bg-gray-900 border border-gray-800",
+        header: "border-b border-gray-800",
+        footer: "border-t border-gray-800",
+      }}
+    >
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">
-          Update Profile
+        <ModalHeader className="text-white font-semibold">
+          Edit profile
         </ModalHeader>
-        <ModalBody>
-          <Input
-            label="Name"
-            name="name"
-            placeholder="Enter your name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
-          <Input
-            label="Email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
-          <Input
-            className="mt-4"
-            label="Phone"
-            name="phone"
-            placeholder="Enter your phone number"
-            value={formData.phone}
-            onChange={handleInputChange}
-          />
-          <Input
-            className="mt-4"
-            label="Address"
-            name="address"
-            placeholder="Enter your address"
-            value={formData.address}
-            onChange={handleInputChange}
-          />
+        <ModalBody className="py-4">
+          <div className="flex justify-center mb-2">
+            <Avatar
+              isBordered
+              className="w-20 h-20"
+              src={user?.profileImage}
+            />
+          </div>
+
+          <div className="space-y-3">
+            <div className="relative">
+              <FaUser
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+
+            <div className="relative">
+              <FaEnvelope
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+
+            <div className="relative">
+              <FaPhone
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                placeholder="Phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+
+            <div className="relative">
+              <FaMapMarkerAlt
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
+              <Input
+                placeholder="Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="pl-11"
+                classNames={{
+                  inputWrapper: "bg-gray-950/50 border border-gray-800 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
+                }}
+              />
+            </div>
+          </div>
         </ModalBody>
-        <ModalFooter>
-          <Button color="danger" size="sm" variant="flat" onPress={onClose}>
-            Close
+        <ModalFooter className="gap-2">
+          <Button
+            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            onClick={onClose}
+          >
+            Cancel
           </Button>
-          <Button color="primary" size="sm" onPress={handleUserUpdate}>
-            Save changes
+          <Button
+            className="bg-white text-gray-950 font-semibold text-sm"
+            isLoading={isLoading}
+            onClick={handleUserUpdate}
+            disabled={isLoading}
+          >
+            Save
           </Button>
         </ModalFooter>
       </ModalContent>

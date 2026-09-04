@@ -11,7 +11,7 @@ const UserPost = ({ posts, isLoading }:any) => {
   if (isLoading) return <CardSkeleton/>;
 
   return (
-    <div>
+    <div className="space-y-3">
       {posts?.length > 0 ? (
         // eslint-disable-next-line prettier/prettier
         posts.map((post:IPost) => <PostCard key={post.id} post={post} />)

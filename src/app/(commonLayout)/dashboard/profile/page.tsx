@@ -23,7 +23,7 @@ const Profile = () => {
   const posts = data?.data;
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-[680px] mx-auto">
       {/* Profile Header */}
       <div className="relative">
         {/* Cover Image */}
@@ -130,7 +130,7 @@ const Profile = () => {
         </div>
 
         {posts && posts.length > 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {posts.map((singlePost: IPost) => (
               <MyPostCard key={singlePost.id} singlePost={singlePost} />
             ))}

@@ -2,132 +2,171 @@
 import React, { useState } from "react";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { Textarea } from "@nextui-org/input";
 import axios from "axios";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { FaImage, FaPen } from "react-icons/fa";
 
-import { createPost } from "@/src/services/post";
 import { useUser } from "@/src/context/user.provider";
 
-interface FormDataType {
-  title: string;
-  category: string;
-  content: string;
-}
+const IMAGE_UPLOAD_LINK =
+  "https://api.imgbb.com/1/upload?key=63e5e5d08878e2104d3082bebc10b603";
 
-const CreatePost: React.FC = () => {
+const CreatePost = () => {
+  const router = useRouter();
   const { user } = useUser();
-  const [formData, setFormData] = useState<FormDataType>({
-    title: "",
-    category: "",
-    content: "",
-  });
-
-  const [images, setImages] = useState<File[]>([]); // To store selected images
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [uploadedImages, setUploadedImages] = useState<string[]>([]); // To store
-
   const userId = user?.id;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [content, setContent] = useState("");
+  const [images, setImages] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
+  const [isLoading, setLoading] = useState(false);
 
-    setFormData({ ...formData, [name]: value });
-  };
-
-  // Handle image file input (multiple)
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-
     if (files) {
-      setImages(Array.from(files));
+      const newImages = Array.from(files);
+      setImages((prev) => [...prev, ...newImages]);
+      const newPreviews = newImages.map((file) => URL.createObjectURL(file));
+      setPreviews((prev) => [...prev, ...newPreviews]);
     }
   };
 
-  // Handle form submission
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+    setPreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async () => {
+    if (!title.trim()) {
+      toast.error("Please enter a title");
+      return;
+    }
+    if (!content.trim()) {
+      toast.error("Please enter some content");
+      return;
+    }
+
     try {
-      // Upload each image to ImgBB and get the URLs
-      const uploadPromises = images.map((image) => {
-        const imageData = new FormData();
+      setLoading(true);
 
-        imageData.append("image", image);
+      let imageLinks: string[] = [];
+      if (images.length > 0) {
+        const uploadPromises = images.map((image) => {
+          const formData = new FormData();
+          formData.append("image", image);
+          return axios.post(IMAGE_UPLOAD_LINK, formData);
+        });
+        const uploadResponses = await Promise.all(uploadPromises);
+        imageLinks = uploadResponses.map((res) => res.data.data.url);
+      }
 
-        const url =
-          "https://api.imgbb.com/1/upload?key=63e5e5d08878e2104d3082bebc10b603";
-
-        return axios.post(url, imageData);
+      const { createPost } = await import("@/src/services/post");
+      await createPost({
+        title,
+        content,
+        category,
+        image: imageLinks,
+        userId,
       });
 
-      // Wait for all images to be uploaded
-      const uploadResponses = await Promise.all(uploadPromises);
-      const imageLinks = uploadResponses.map((res) => res.data.data.url);
-
-      // Set the uploaded image URLs to state
-      setUploadedImages(imageLinks);
-
-      // Structure the final data object
-      const finalData = {
-        title: formData.title,
-        content: formData.content,
-        category: formData.category,
-        image: imageLinks,
-        userId: userId,
-      };
-
-      createPost(finalData);
+      toast.success("Post created!");
+      router.push("/dashboard");
     } catch (error) {
-      console.error("Error uploading images:", error);
+      toast.error("Failed to create post");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
-      <Input
-        label="title"
-        name="title"
-        placeholder="Give a Title"
-        type="text"
-        value={formData.title}
-        variant="underlined"
-        onChange={handleInputChange}
-      />
-      <Input
-        label="category"
-        name="category"
-        placeholder="Category"
-        type="text"
-        value={formData.category}
-        variant="underlined"
-        onChange={handleInputChange}
-      />
-      <Input
-        label="content"
-        name="content"
-        placeholder="Write about your post"
-        type="text"
-        value={formData.content}
-        variant="underlined"
-        onChange={handleInputChange}
-      />
+    <div className="max-w-[680px] mx-auto">
+      <div className="mb-6">
+        <h1 className="text-lg font-semibold text-white">Create post</h1>
+        <p className="text-sm text-gray-500">Share something with your followers</p>
+      </div>
 
-      {/* Multiple Image upload field */}
-      <Input
-        multiple
-        accept="image/*"
-        label="Upload Images"
-        type="file"
-        variant="underlined"
-        onChange={handleImageChange}
-      />
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 space-y-4">
+        <Input
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          startContent={<FaPen className="text-gray-600" size={14} />}
+          classNames={{
+            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+            input: "text-white text-sm placeholder-gray-600",
+          }}
+        />
 
-      <Button
-        className="mt-12 right-0"
-        color="primary"
-        size="sm"
-        variant="ghost"
-        onClick={handleSubmit}
-      >
-        Upload Now
-      </Button>
+        <Input
+          placeholder="Category (e.g. Travel, Food, Music)"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          classNames={{
+            inputWrapper: "bg-gray-900 border border-gray-800 h-12",
+            input: "text-white text-sm placeholder-gray-600",
+          }}
+        />
+
+        <Textarea
+          placeholder="What's on your mind?"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          minRows={4}
+          classNames={{
+            inputWrapper: "bg-gray-900 border border-gray-800",
+            input: "text-white text-sm placeholder-gray-600",
+          }}
+        />
+
+        {/* Image Previews */}
+        {previews.length > 0 && (
+          <div className="flex gap-2 flex-wrap">
+            {previews.map((preview, index) => (
+              <div key={index} className="relative group">
+                <img
+                  src={preview}
+                  alt=""
+                  className="w-20 h-20 rounded-lg object-cover border border-gray-800"
+                />
+                <button
+                  onClick={() => removeImage(index)}
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-gray-800 border border-gray-700 rounded-full text-xs text-gray-400 hover:text-white hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  &times;
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Actions */}
+        <div className="flex items-center justify-between pt-2 border-t border-gray-800">
+          <label className="flex items-center gap-2 px-4 py-2 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white cursor-pointer transition-colors text-sm">
+            <FaImage size={16} />
+            <span>Photo</span>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </label>
+
+          <Button
+            className="bg-white text-gray-950 font-semibold text-sm px-6"
+            isLoading={isLoading}
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            Post
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

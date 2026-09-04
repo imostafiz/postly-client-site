@@ -23,9 +23,9 @@ const MainPage = () => {
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Search and Filter Bar */}
-      <div className="sticky top-0 z-10 bg-gray-950/80 backdrop-blur-xl py-4 -mx-4 px-4 lg:mx-0 lg:px-0">
+      <div className="sticky top-0 z-10 bg-gray-950/80 backdrop-blur-xl py-3 -mx-4 px-4 lg:mx-0 lg:px-0">
         <div className="flex items-center gap-3">
           {/* Search Input */}
           <div className="flex-1 relative">

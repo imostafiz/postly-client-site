@@ -4,8 +4,9 @@ import { Input } from "@nextui-org/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 import { toast } from "sonner";
-import { FaEnvelope, FaLock, FaUsers, FaCamera, FaHeart } from "react-icons/fa";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import Link from "next/link";
 
 import { useForgetPasswordMutation } from "@/src/redux/features/user";
 import { useUserLogin } from "@/src/hooks/auth.hooks";
@@ -77,151 +78,143 @@ const LoginPage = () => {
   }, [isSuccess, isError, redirect, router]);
 
   return (
-    <div className="min-h-screen bg-gray-950 flex">
-      {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-gray-950" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
+      <div className="w-full max-w-[1040px] flex rounded-3xl overflow-hidden border border-gray-800/50">
+        {/* Left Side - Branding */}
+        <div className="hidden lg:flex lg:w-[45%] relative bg-gradient-to-br from-gray-900 to-gray-950 p-12 flex-col justify-between">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
 
-        <div className="relative z-10 flex flex-col justify-center px-16">
-          {/* Logo */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25">
-              <span className="text-white font-bold text-2xl">P</span>
+          <div className="relative z-10">
+            <div className="flex items-center gap-2.5 mb-16">
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+                <span className="text-gray-950 font-bold text-lg">P</span>
+              </div>
+              <span className="text-xl font-semibold text-white">Postly</span>
             </div>
-            <span className="text-3xl font-bold text-white">Postly</span>
+
+            <h1 className="text-[40px] font-bold text-white leading-[1.15] mb-4">
+              Welcome
+              <br />
+              back.
+            </h1>
+            <p className="text-gray-400 text-base leading-relaxed max-w-sm">
+              Sign in to continue to your feed, messages, and notifications.
+            </p>
           </div>
 
-          {/* Tagline */}
-          <h1 className="text-5xl font-bold text-white leading-tight mb-6">
-            Connect with
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Friends
-            </span>
-          </h1>
-          <p className="text-gray-400 text-lg mb-12 max-w-md">
-            Share your moments, discover trends, and connect with people who matter.
-          </p>
-
-          {/* Features */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center">
-                <FaUsers className="text-blue-400" size={18} />
-              </div>
-              <span className="text-gray-300">Connect with friends & family</span>
+          <div className="relative z-10 flex items-center gap-3 text-sm text-gray-500">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  className="w-8 h-8 rounded-full border-2 border-gray-900 bg-gray-700 flex items-center justify-center text-xs text-gray-400"
+                >
+                  {i}
+                </div>
+              ))}
             </div>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center">
-                <FaCamera className="text-green-400" size={18} />
-              </div>
-              <span className="text-gray-300">Share photos & videos</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
-                <FaHeart className="text-purple-400" size={18} />
-              </div>
-              <span className="text-gray-300">Discover what&apos;s trending</span>
-            </div>
+            <span>Join 10,000+ users already here</span>
           </div>
         </div>
-      </div>
 
-      {/* Right Side - Login Form */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12">
-        <div className="w-full max-w-md">
+        {/* Right Side - Form */}
+        <div className="w-full lg:w-[55%] bg-gray-950 p-8 sm:p-12">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-10">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
-              <span className="text-white font-bold text-xl">P</span>
+          <div className="lg:hidden flex items-center gap-2.5 mb-10">
+            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center">
+              <span className="text-gray-950 font-bold text-sm">P</span>
             </div>
-            <span className="text-2xl font-bold text-white">Postly</span>
+            <span className="text-lg font-semibold text-white">Postly</span>
           </div>
 
-          {/* Form Header */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-2">Welcome back</h2>
-            <p className="text-gray-500">Sign in to your account</p>
+            <h2 className="text-2xl font-bold text-white mb-1.5">
+              Sign in to your account
+            </h2>
+            <p className="text-gray-500 text-sm">
+              Enter your credentials to continue
+            </p>
           </div>
 
-          {/* Form */}
-          <div className="space-y-4">
+          {/* Form Fields */}
+          <div className="space-y-3.5">
             <div className="relative">
-              <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaEnvelope
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
               <Input
                 name="email"
                 type="email"
                 placeholder="Email address"
                 value={loginData.email}
                 onChange={handleInputChange}
-                className="pl-12"
+                className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
+                  inputWrapper:
+                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
                 }}
               />
             </div>
 
             <div className="relative">
-              <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <FaLock
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
               <Input
                 name="password"
                 type="password"
                 placeholder="Password"
                 value={loginData.password}
                 onChange={handleInputChange}
-                className="pl-12"
+                className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-900 border-gray-800 hover:border-gray-700 focus-within:border-blue-500",
-                  input: "text-white placeholder-gray-500",
+                  inputWrapper:
+                    "bg-gray-900/80 border border-gray-800 hover:border-gray-700 focus-within:border-gray-600 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
                 }}
               />
             </div>
-
-            <div className="flex justify-end">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                Forgot password?
-              </button>
-            </div>
-
-            <Button
-              fullWidth
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold"
-              isLoading={isPending}
-              onClick={handleLogin}
-            >
-              {isPending ? "Signing in..." : "Sign in"}
-            </Button>
           </div>
+
+          <div className="flex justify-end mt-3">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+            >
+              Forgot password?
+            </button>
+          </div>
+
+          {/* Submit */}
+          <Button
+            fullWidth
+            size="lg"
+            className="mt-6 bg-white text-gray-950 font-semibold text-sm hover:bg-gray-100 transition-colors"
+            isLoading={isPending}
+            onClick={handleLogin}
+          >
+            {isPending ? "Signing in..." : "Sign in"}
+          </Button>
 
           {/* Divider */}
-          <div className="flex items-center my-8">
-            <div className="flex-1 border-t border-gray-800" />
-            <span className="px-4 text-sm text-gray-600">or continue with</span>
-            <div className="flex-1 border-t border-gray-800" />
+          <div className="flex items-center my-6">
+            <div className="flex-1 border-t border-gray-800/80" />
+            <span className="px-3 text-xs text-gray-600">or</span>
+            <div className="flex-1 border-t border-gray-800/80" />
           </div>
 
-          {/* Register Link */}
-          <div className="text-center">
-            <p className="text-gray-500">
-              Don&apos;t have an account?{" "}
-              <a
-                href="/register"
-                className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
-              >
-                Create one now
-              </a>
-            </p>
-          </div>
-
-          {/* Footer */}
-          <p className="text-center text-xs text-gray-700 mt-12">
-            &copy; 2024 Postly. All rights reserved.
+          {/* Register */}
+          <p className="text-center text-sm text-gray-500">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/register"
+              className="text-white font-medium hover:underline underline-offset-4"
+            >
+              Create one
+            </Link>
           </p>
         </div>
       </div>
@@ -238,30 +231,33 @@ const LoginPage = () => {
               onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
             >
-              <IoMdClose size={24} />
+              <IoMdClose size={20} />
             </button>
 
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <FaLock className="text-blue-400" size={24} />
-              </div>
-              <h2 className="text-xl font-bold text-white mb-2">Forgot Password?</h2>
+            <div className="mb-6">
+              <h2 className="text-lg font-bold text-white mb-1.5">
+                Reset your password
+              </h2>
               <p className="text-gray-500 text-sm">
                 Enter your email and we&apos;ll send you a reset link.
               </p>
             </div>
 
-            <div className="relative mb-6">
-              <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+            <div className="relative mb-5">
+              <FaEnvelope
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-600"
+                size={15}
+              />
               <Input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Email address"
                 value={forgotEmail}
                 onChange={(e) => setForgotEmail(e.target.value)}
-                className="pl-12"
+                className="pl-11"
                 classNames={{
-                  inputWrapper: "bg-gray-800 border-gray-700",
-                  input: "text-white placeholder-gray-500",
+                  inputWrapper:
+                    "bg-gray-900/80 border border-gray-800 h-12",
+                  input: "text-white text-sm placeholder-gray-600",
                 }}
               />
             </div>
@@ -270,17 +266,17 @@ const LoginPage = () => {
               <Button
                 fullWidth
                 variant="flat"
-                className="bg-gray-800 text-gray-300"
+                className="bg-gray-800 text-gray-300 font-medium text-sm h-11"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
               </Button>
               <Button
                 fullWidth
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                className="bg-white text-gray-950 font-semibold text-sm h-11"
                 onClick={handleForgotPassword}
               >
-                Send Reset Link
+                Send link
               </Button>
             </div>
           </div>
@@ -294,7 +290,7 @@ const WrappedLoginPage = () => (
   <Suspense
     fallback={
       <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-gray-700 border-t-white rounded-full animate-spin" />
       </div>
     }
   >

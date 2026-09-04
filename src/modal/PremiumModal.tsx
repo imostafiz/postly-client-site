@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Modal,
@@ -6,21 +8,36 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Divider,
 } from "@nextui-org/react";
+import {
+  FaCheck,
+  FaCrown,
+  FaShieldAlt,
+  FaStar,
+  FaBolt,
+  FaGem,
+} from "react-icons/fa";
+
 import { useCreatePaymentMutation } from "../redux/features/paymentApi";
 import { useGetUser } from "../hooks/auth.hooks";
 
-// Define the prop types
 interface PremiumModalProps {
   isOpen: boolean;
-  onClose: () => void; // Function type for closing the modal
+  onClose: () => void;
 }
+
+const features = [
+  { icon: FaShieldAlt, text: "Verified badge on profile", color: "text-blue-400" },
+  { icon: FaStar, text: "Access to exclusive content", color: "text-yellow-400" },
+  { icon: FaBolt, text: "Priority support", color: "text-purple-400" },
+  { icon: FaGem, text: "Ad-free experience", color: "text-green-400" },
+];
 
 const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
   const { data } = useGetUser();
   const userInfo = data?.data;
   const [createPayment] = useCreatePaymentMutation();
+
   const handlePayment = async () => {
     const paymentObject = {
       totalAmount: 150.75,
@@ -37,59 +54,61 @@ const PremiumModal: React.FC<PremiumModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <Modal
-      backdrop='opaque'
-      classNames={{
-        backdrop:
-          "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20",
-      }}
       isOpen={isOpen}
-      onOpenChange={onClose} // This is passed the function to handle modal close
+      onOpenChange={onClose}
+      placement="center"
+      classNames={{
+        base: "bg-gray-900 border border-gray-800",
+        header: "border-b border-gray-800",
+        footer: "border-t border-gray-800",
+      }}
     >
-      <ModalContent className=''>
-        {() => (
-          <>
-            <ModalHeader className='flex flex-col gap-1'>
-              Premium Membership
-            </ModalHeader>
-            <ModalBody className=''>
-              <h3 className='text-md font-semibold'>
-                Advantages of Premium Membership:
-              </h3>
-              <Divider />
-              <ul className='list-disc pl-5 mt-2'>
-                <li>Access to exclusive content</li>
-                <li>Ad-free experience</li>
-                <li>Priority support</li>
-                <li>Custom features tailored to your needs</li>
-                <li>Profile Verified</li>
-              </ul>
-              <p className='mt-4 text-xl font-bold'>
-                {" "}
-                Tk 50.00 for Lifetime Access
-              </p>
-            </ModalBody>
-            <ModalFooter>
-              <Button
-                className='rounded-full'
-                color='danger'
-                size='sm'
-                variant='light'
-                onPress={onClose}
-              >
-                Close
-              </Button>
-              <Button
-                onClick={handlePayment}
-                className='rounded-full font-bold'
-                color='warning'
-                size='sm'
-                onPress={onClose}
-              >
-                Subscribe
-              </Button>
-            </ModalFooter>
-          </>
-        )}
+      <ModalContent>
+        <ModalBody className="py-6">
+          <div className="flex flex-col items-center text-center">
+            <div className="w-14 h-14 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-yellow-500/25">
+              <FaCrown className="text-white" size={24} />
+            </div>
+            <h3 className="text-white font-semibold text-lg mb-1">
+              Upgrade to Premium
+            </h3>
+            <p className="text-gray-500 text-sm mb-4">
+              Unlock exclusive features
+            </p>
+
+            <div className="w-full space-y-2.5 mb-5">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 bg-gray-950/50 border border-gray-800 rounded-xl px-4 py-3"
+                >
+                  <feature.icon className={feature.color} size={16} />
+                  <span className="text-gray-300 text-sm">{feature.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-baseline gap-1 mb-1">
+              <span className="text-3xl font-bold text-white">Tk 50</span>
+              <span className="text-gray-500 text-sm">/ lifetime</span>
+            </div>
+            <p className="text-gray-600 text-xs">One-time payment, no recurring fees</p>
+          </div>
+        </ModalBody>
+        <ModalFooter className="gap-2 justify-center">
+          <Button
+            className="bg-gray-800 text-gray-300 font-medium text-sm"
+            onClick={onClose}
+          >
+            Maybe later
+          </Button>
+          <Button
+            className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-semibold text-sm shadow-lg shadow-yellow-500/25"
+            onClick={handlePayment}
+          >
+            Subscribe now
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );
